@@ -1,0 +1,19 @@
+<div class="container">
+    <div class="row top-30">
+      <div class="col-md-4">
+        <form method="POST" enctype="multipart/form-data" id="fileUploadForm">
+          <div class="form-group">
+            <label for="inputFile">File input</label>
+            <input type="file" class="form-control-file" id="inputFile" name="files"/>
+          </div>
+          <button id="btnSubmit" type="submit" value="Submit" class="btn btn-primary">Submit</button>
+      </form>
+      </div>
+    </div>
+
+    <div class="row">
+        {{#each files}}
+            {{> files/files-partial}}
+        {{/each}}
+    </div>
+</div>

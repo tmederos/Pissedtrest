@@ -1,0 +1,14 @@
+CREATE DATABASE file_db;
+USE file_db;
+
+-- CREATE TABLE file_details (
+--   fileid int(11) AUTO_INCREMENT NOT NULL ,
+--   filename varchar(255) NOT NULL,
+--   filepath varchar(255) NOT NULL,
+--   filetype varchar(255) NOT NULL,
+--   PRIMARY KEY (fileid)
+-- );
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

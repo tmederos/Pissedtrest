@@ -20,15 +20,57 @@
       </form>
       </div>
     </div>
+    <div class="grid">
+      <div class="grid-item"><img class="grid-item" src="https://images.pexels.com/photos/895231/pexels-photo-895231.jpeg?h=350&auto=compress&cs=tinysrgb" alt="drippy snow"></div>
+      <div class="grid-item grid-item--width2"><img class="grid-item grid-item--width2" src="https://images.pexels.com/photos/895231/pexels-photo-895231.jpeg?h=350&auto=compress&cs=tinysrgb" alt="drippy snow"></div>
+      <div class="grid-item"><img class="grid-item" src="https://images.pexels.com/photos/895231/pexels-photo-895231.jpeg?h=350&auto=compress&cs=tinysrgb" alt="drippy snow"></div>
+      <div class="grid-item grid item--height2"><img class="grid-item grid item--height2" src="https://images.pexels.com/photos/895231/pexels-photo-895231.jpeg?h=350&auto=compress&cs=tinysrgb" alt="drippy snow"></div>
+    </div>
+
+
 
   </div>
   
+
  <!-- Bootstrap -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.0/moment.min.js" type="text/javascript"></script>
   <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
  <!-- Custom Script -->
   <script src="js/uploadscript.js" type="text/javascript"></script>
+<!-- Masonry Layout -->
+<script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.js"></script>
+<script src="./js/masonry.pkgd.js"></script>
+<!-- imagesLoaded -->
+<script src="https://unpkg.com/imagesloaded@4/imagesloaded.pkgd.js"></script>
+
+<script>
+   var $grid = $(".grid").imagesLoaded( function () {
+      // init Masonry after all images have loaded
+      $grid.masonry({
+        // options
+        itemSelector: ".grid-item",
+        columnWidth: 80,
+        columnHeight: 60,
+        percentPosition: true
+
+      });
+      $grid.masonry({
+        itemSelector: ".grid-item grid-item--width2",
+        columnWidth: 100,
+        margin: 10,
+        percentPosition: true
+
+      });
+      $grid.masonry({
+        itemSelector: ".grid-item grid-item--height2",
+        columnHeight: 90,
+        margin: 10,
+        percentPosition: true
+     });
+    });
+</script>
+
 
 </body>
 

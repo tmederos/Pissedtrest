@@ -1,5 +1,5 @@
-CREATE DATABASE file_db;
-USE file_db;
+CREATE DATABASE pin_db;
+USE pin_db;
 
 -- CREATE TABLE file_details (
 --   fileid int(11) AUTO_INCREMENT NOT NULL ,

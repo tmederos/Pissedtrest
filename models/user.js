@@ -1,7 +1,3 @@
-// //reference connection to DB
-// const sequelize = require("../config/connection.js");
-const Sequelize = require("sequelize");
-
 module.exports = function(sequelize, DataTypes) {
     var User = sequelize.define("User", {
       id:  {

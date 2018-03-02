@@ -1,15 +1,31 @@
-.container {
-  background-color: grey;
+
+body {
+  margin: 0;
+  padding: 0;
 }
+
+.container {
+  background-color: rgb(205, 243, 255);
+  height: 100%;
+  width: 100%;
+}
+
+.grid {
+  margin-top: 5%;
+ background-color: bisque;
+}
+
 .grid-item {
   overflow: auto;
-  padding: 1px;
+  padding: 1%;
+  margin-bottom: 4%;
   float: left;
   position: relative;
 }
 .grid-item img {
   width: 90%;
   height: 90%;
+  margin: auto;
   overflow: auto;
   position: relative;
   -webkit-animation-duration: 3s;
@@ -19,22 +35,26 @@
 }
 
 .card-text {
-  opacity: .5;
+  opacity: 0;
   -webkit-transition: 0.5s;
   transition: 0.5s;
+  margin: auto;
 }
 
-.card-text:hover {
-  opacity: 100;
-}
 .grid-item img:hover {
   width: 80%;
+
 }
 
-body {
-  margin: 0;
-  padding: 0;
+.grid-item--width2 {
+  width: 40%
 }
+
+.grid-item:hover .card-text {
+  opacity: 100;
+}
+
+
 
 .grid-sizer {
   width: 15%;

@@ -1,8 +1,20 @@
 $(document).ready(function() {
 
+
+//Opens modal
+$("#nav-upload").on("click", function(){
+  $('#uploadModal').modal('show')
+})
+
+
 $("#btnSubmit").click(function (event) {
 
   event.preventDefault();
+  uploadFunction();
+
+})
+
+var uploadFunction = function () {
 
   var form = $('#fileUploadForm')[0];
 
@@ -19,8 +31,16 @@ $("#btnSubmit").click(function (event) {
       contentType: false,
       cache: false,
       timeout: 600000,
+      success: function(result) {
+        
+        if(result.status == 200){
+          $('#uploadModal').modal('hide')
+        }
+        else{
+            console.log("Error")
+        }
+    }
   });
-
-})
+}
     
 });

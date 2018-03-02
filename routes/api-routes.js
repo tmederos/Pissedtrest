@@ -26,15 +26,15 @@ var db = require("../models");
 // =============================================================
 module.exports = function(app) {
 
-app.get("/", function(req, res){
+// app.get("/", function(req, res){
 
-  db.FileData.findAll({}).then(function(result){
-    var hbsObject = {
-      files: result
-    }
-    res.render("index", hbsObject)
-  })
-})
+//   db.Image.findAll({}).then(function(result){
+//     var hbsObject = {
+//       files: result
+//     }
+//     res.render("index", hbsObject)
+//   })
+// })
 
 app.post('/api/upload', upload.any(), function (req, res) {
 
@@ -48,12 +48,10 @@ app.post('/api/upload', upload.any(), function (req, res) {
 
 	res.setHeader( 'content-type', 'application/json' );
 
-  db.FileData.create({
-    filename: filename,
-    filepath: filepath,
-    filetype: filetype
+  db.Image.create({
+    path: filepath,
   }).then(function(dbPost) {
-    res.json(dbPost)
+    res.json({success : "Updated Successfully", status : 200})
   })
 })
 

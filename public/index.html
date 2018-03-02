@@ -1,305 +1,124 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<meta name="description" content="">
-		<meta name="author" content="">
-		<title>Pissedterest</title>
-		<!-- Favicons-->
-		<link rel="shortcut icon" href="images/favicon.png">
-		<link rel="apple-touch-icon" href="images/apple-touch-icon.png">
-		<link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
-		<link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
-		<!-- Web Fonts-->
-		<link href="https://fonts.googleapis.com/css?family=Hind:400,700%7cLora:400i%7cPoppins:500,600,700" rel="stylesheet">
-		<!-- Bootstrap core CSS-->
-		<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
-		<!-- Plugins and Icon Fonts-->
-		<link href="css/plugins.min.css" rel="stylesheet">
-		<!-- Template core CSS-->
-		<link href="css/template.min.css" rel="stylesheet">
-	</head>
-	<body>
 
-		<!-- Layout-->
-		<div class="layout">
+  <head>
 
-			<!-- Header-->
-			<header class="header header-center undefined">
-				<div class="container-fluid">
-					<!-- Logos-->
-					<div class="inner-header"><a class="inner-brand" href="index.html"><img class="brand-dark" src="images/logo.png" width="77px" alt=""><img class="brand-light" src="images/logo-light.png" width="77px" alt="">
-							<!-- Or simple text-->
-							<!-- Core--></a></div>
-					<!-- Navigation-->
-						<div class="inner-navigation collapse">
-						<div class="inner-navigation-inline">
-							<div class="inner-nav">
-								<ul>
-									<!-- Home-->
-									<li class="menu-item-has-children menu-item-has-mega-menu"><a href="#">Link 1</a>
-										<div class="mega-menu">
-											<ul class="sub-menu mega-menu-row">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
 
+    <title>Pissedtrest</title>
 
-													</ul>
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="css/styles.css" media="screen" title="no title">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"></head>
 
-										<li class="menu-item-has-children menu-item-has-mega-menu"><a href="#">Link 2</a>
-										<div class="mega-menu">
-											<ul class="sub-menu mega-menu-row">
+    <!-- Custom styles for this template -->
+    <style>
+      body {
+        padding-top: 54px;
+      }
+      @media (min-width: 992px) {
+        body {
+          padding-top: 56px;
+        }
+      }
 
+    </style>
 
-												</li>
-											</ul>
+  </head>
 
+  <body>
 
-										<li class="menu-item-has-children menu-item-has-mega-menu"><div class="m-b-10"><a class="btn btn-circle btn-shadow btn-sm btn-gray" href="/auth/google">Log In</a></div>
-										<div class="mega-menu">
-										<ul class="sub-menu mega-menu-row">
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-secondary fixed-top">
+      <div class="container">
+        <a class="navbar-brand" href="#">Pissedtrest</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <div class="justify-content-md-center">
+                    <form class="form-inline my-2 my-lg-0">
+                        <input class="form-control mr-sm-2" type="text" placeholder="Category search" aria-label="Search" style="width: 600px;">
+                     
+                        <button class="btn btn-primary my-2 my-sm-0" type="submit">Search</button>
+                    </form>
+                </div>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">My Board</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/auth/google">Login</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="nav-upload" href="#">Upload</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
 
-											</ul>
+    <!-- Page Content -->
+    <div class="container">
+      <div class="row align-items-center justify-content-center border mt-5 p-4">
+          <div class="col text-center">
+            <button type="button" class="btn btn-primary">Cat 1</button>
+          </div>
+          <div class="col text-center">
+            <button type="button" class="btn btn-primary">Cat 2</button>
+          </div>
+          <div class="col text-center">
+            <button type="button" class="btn btn-primary">Cat 3</button>
+          </div>
+          <div class="col text-center">
+            <button type="button" class="btn btn-primary">Cat 4</button>
+          </div>
+          <div class="col text-center">
+            <button type="button" class="btn btn-primary">Cat 5</button>
+          </div>
+          <div class="col text-center">
+            <button type="button" class="btn btn-primary">Cat 6</button>
+          </div>
+      </div>
+      <div class="row border mt-5 p-5">
+        <div class="col-lg-12 text-center">
+          <h1 class="mt-5">Images Here</h1>
+        </div>
+      </div>
+      <!-- Modal -->
+      <div class="modal fade" id="uploadModal">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title">Upload</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <form method="POST" enctype="multipart/form-data" id="fileUploadForm">
+                  <div class="form-group">
+                    <label for="inputFile">File input</label>
+                    <input type="file" class="form-control-file" id="inputFile" name="files"/>
+                  </div>
+                  <button id="btnSubmit" type="submit" value="Submit" class="btn btn-primary">Upload</button>
+              </form>
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>
 
-										<li class="menu-item-has-children menu-item-has-mega-menu"><div class="m-b-10"><a class="btn btn-circle btn-shadow btn-sm btn-gray" href="#">Sign Up</a></div>
-										<div class="mega-menu">
-										<ul class="sub-menu mega-menu-row">
+    <!-- Bootstrap core JavaScript -->
+    <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <!-- Custom Script -->
+  <script src="js/uploadscript.js" type="text/javascript"></script>
+  </body>
 
-											</ul>
-
-
-										</div>
-									</li>
-
-								</ul>
-							</div>
-						</div>
-					</div>
-
-
-			</header>
-			<!-- Header end-->
-
-			<!-- Wrapper-->
-			<div class="wrapper">
-
-				<!-- Page Header-->
-				<section class="module-header">
-
-
-				<!-- Page Header end-->
-
-				<!-- PORTFOLIO HERE-->
-				<section class="module p-0">
-					<div class="container-fluid">
-						<div class="row row-portfolio-filter">
-							<div class="col-md-12">
-								<ul class="filters h5" id="filters">
-									<li><a class="current" href="#" data-filter="*">All</a></li>
-									<li><a href="#" data-filter=".branding">Branding</a></li>
-									<li><a href="#" data-filter=".design">Design</a></li>
-									<li><a href="#" data-filter=".photo">Photo</a></li>
-									<li><a href="#" data-filter=".web">Web</a></li>
-								</ul>
-							</div>
-						</div>
-						<div class="row row-portfolio" data-columns="4">
-							<div class="grid-sizer"></div>
-							<div class="portfolio-item branding photo undefined">
-								<div class="portfolio-wrapper">
-									<img src="images/portfolio/img-1-1.jpg" alt="">
-									<div class="portfolio-overlay"></div>
-									<div class="portfolio-caption">
-										<h5 class="portfolio-title">Mutualismi</h5>
-									</div><a class="portfolio-link" href="#"></a>
-								</div>
-							</div>
-							<div class="portfolio-item design photo undefined">
-								<div class="portfolio-wrapper">
-									<img src="images/portfolio/img-2.jpg" alt="">
-									<div class="portfolio-overlay"></div>
-									<div class="portfolio-caption">
-										<h5 class="portfolio-title">The Perfume</h5>
-									</div><a class="portfolio-link" href="#"></a>
-								</div>
-							</div>
-							<div class="portfolio-item branding photo undefined">
-								<div class="portfolio-wrapper">
-									<img src="images/portfolio/img-3-3.jpg" alt="">
-									<div class="portfolio-overlay"></div>
-									<div class="portfolio-caption">
-										<h5 class="portfolio-title">Bumblebee Icons</h5>
-									</div><a class="portfolio-link" href="#"></a>
-								</div>
-							</div>
-							<div class="portfolio-item design photo undefined">
-								<div class="portfolio-wrapper">
-									<img src="images/portfolio/img-5.jpg" alt="">
-									<div class="portfolio-overlay"></div>
-									<div class="portfolio-caption">
-										<h5 class="portfolio-title">Bluetooth Speaker</h5>
-									</div><a class="portfolio-link" href="#"></a>
-								</div>
-							</div>
-							<div class="portfolio-item branding web undefined">
-								<div class="portfolio-wrapper">
-									<img src="images/portfolio/img-7-7.jpg" alt="">
-									<div class="portfolio-overlay"></div>
-									<div class="portfolio-caption">
-										<h5 class="portfolio-title">Bluetooth Speaker</h5>
-									</div><a class="portfolio-link" href="#"></a>
-								</div>
-							</div>
-							<div class="portfolio-item branding web undefined">
-								<div class="portfolio-wrapper">
-									<img src="images/portfolio/img-6-6.jpg" alt="">
-									<div class="portfolio-overlay"></div>
-									<div class="portfolio-caption">
-										<h5 class="portfolio-title">Candy Icons</h5>
-									</div><a class="portfolio-link" href="#"></a>
-								</div>
-							</div>
-							<div class="portfolio-item design web undefined">
-								<div class="portfolio-wrapper">
-									<img src="images/portfolio/img-4.jpg" alt="">
-									<div class="portfolio-overlay"></div>
-									<div class="portfolio-caption">
-										<h5 class="portfolio-title">Greedy Emperor</h5>
-									</div><a class="portfolio-link" href="#"></a>
-								</div>
-							</div>
-							<div class="portfolio-item design undefined">
-								<div class="portfolio-wrapper">
-									<img src="images/portfolio/img-8.jpg" alt="">
-									<div class="portfolio-overlay"></div>
-									<div class="portfolio-caption">
-										<h5 class="portfolio-title">Candy Icons</h5>
-									</div><a class="portfolio-link" href="#"></a>
-								</div>
-							</div>
-						</div>
-					</div>
-				</section>
-			</div>
-				<!-- Portfolio end-->
-
-				<!-- Footer-->
-				<footer class="footer">
-					<div class="container">
-						<div class="row">
-							<div class="col-md-6 col-lg-3">
-								<!-- Text widget-->
-								<aside class="widget widget_text">
-									<div class="textwidget">
-										<p><img src="images/logo-light.png" width="100" alt=""></p>
-										<p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Ut non enim eleifend felis pretium feugiat.</p>E-mail: <a href="mailto:support@core.com">support@core.com</a> <br/>
-										Phone: 8 800 123 4567 <br/>
-										Fax: 8 800 123 4567 <br/>
-									</div>
-								</aside>
-							</div>
-							<div class="col-md-6 col-lg-3">
-								<!-- Recent entries widget-->
-								<aside class="widget widget_recent_entries">
-									<div class="widget-title">
-										<h5>Recent Posts</h5>
-									</div>
-									<ul>
-										<li><a href="#">Experience the sound of a modern and clean 360° Bluetooth Speaker.</a> <span class="post-date">May 8, 2016</span></li>
-										<li><a href="#">Experience the sound of a modern and clean 360° Bluetooth Speaker.</a> <span class="post-date">April 7, 2016</span></li>
-										<li><a href="#">Experience the sound of a modern and clean 360° Bluetooth Speaker.</a> <span class="post-date">April 7, 2016</span></li>
-									</ul>
-								</aside>
-							</div>
-							<div class="col-md-6 col-lg-3">
-								<!-- Twitter widget-->
-								<aside class="widget twitter-feed-widget">
-									<div class="widget-title">
-										<h5>Twitter Feed</h5>
-									</div>
-									<div class="twitter-feed" data-twitter="345170787868762112" data-number="1"></div>
-								</aside>
-							</div>
-							<div class="col-md-6 col-lg-3">
-								<!-- Tags widget-->
-								<aside class="widget widget_tag_cloud">
-									<div class="widget-title">
-										<h5>Tags</h5>
-									</div>
-									<div class="tagcloud"><a href="#">Design</a><a href="#">Travel</a><a href="#">Startup</a><a href="#">Music</a><a href="#">Portfolio</a><a href="#">Responsive</a></div>
-								</aside>
-							</div>
-						</div>
-					</div>
-					<div class="footer-copyright">
-						<div class="container">
-							<div class="row">
-								<div class="col-md-12">
-									<div class="text-center"><span class="copyright">© 2017 Core, All Rights Reserved. Design with love by <a href="http://2the.me/">2the.me</a></span></div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</footer>
-				<!-- Footer end-->
-
-				<a class="scroll-top" href="#top"><i class="fa fa-angle-up"></i></a>
-			</div>
-			<!-- Wrapper end-->
-
-		</div>
-		<!-- Layout end-->
-
-		<!-- Off canvas-->
-		<div class="off-canvas-sidebar">
-			<div class="off-canvas-sidebar-wrapper">
-				<div class="off-canvas-header"><a class="close-offcanvas" href="#"><span class="arrows arrows-arrows-remove"></span></a></div>
-				<div class="off-canvas-content">
-					<!-- Text widget-->
-					<aside class="widget widget_text">
-						<div class="textwidget">
-							<p class="text-center"><img src="images/logo-light.png" width="100" alt=""></p>
-						</div>
-					</aside>
-					<!-- Text widget-->
-					<aside class="widget widget_text">
-						<div class="textwidget">
-							<p class="text-center"><img src="images/offcanvas.jpg" alt=""></p>
-						</div>
-					</aside>
-					<!-- Navmenu widget-->
-					<aside class="widget widget_nav_menu">
-						<ul class="menu">
-							<li class="menu-item menu-item-has-children"><a href="#">Home</a></li>
-							<li class="menu-item"><a href="#">About Us</a></li>
-							<li class="menu-item"><a href="#">Services</a></li>
-							<li class="menu-item"><a href="#">Portfolio</a></li>
-							<li class="menu-item"><a href="#">Blog</a></li>
-							<li class="menu-item"><a href="#">Shortcodes</a></li>
-						</ul>
-					</aside>
-					<ul class="social-icons">
-						<li><a href="#"><i class="fa fa-facebook"></i></a></li>
-						<li><a href="#"><i class="fa fa-twitter"></i></a></li>
-						<li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-						<li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-						<li><a href="#"><i class="fa fa-vk"></i></a></li>
-					</ul>
-				</div>
-			</div>
-		</div>
-		<!-- Off canvas end-->
-
-		<!-- Scripts-->
-		<script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
-		<script src="bootstrap/js/bootstrap.min.js"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.min.js"></script>
-		<script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyA0rANX07hh6ASNKdBr4mZH0KZSqbHYc3Q"></script>
-		<script src="js/plugins.min.js"></script>
-		<script src="js/charts.js"></script>
-		<script src="js/custom.min.js"></script>
-
-		<!-- Color Switcher (Remove these lines)-->
-		<script src="js/style-switcher.min.js"></script>
-	</body>
 </html>

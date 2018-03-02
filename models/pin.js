@@ -15,10 +15,12 @@ module.exports = function(sequelize, DataTypes) {
       }
     },
     description: Sequelize.STRING,
-    image_id: Sequelize.STRING,
-    category: Sequelize.STRING
+    uploaded_by: Sequelize.INTEGER,
+    category: Sequelize.STRING,
+    filepath: Sequelize.STRING
 }, {
     timestamps: false
 });
+
   return Pin;
 };

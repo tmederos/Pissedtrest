@@ -26,15 +26,21 @@ var db = require("../models");
 // =============================================================
 module.exports = function(app) {
 
-app.get("/", function(req, res){
+// app.get("/", function(req, res){
 
-  db.FileData.findAll({}).then(function(result){
-    var hbsObject = {
-      files: result
-    }
-    res.render("index", hbsObject)
-  })
-})
+//   db.FileData.findAll({}).then(function(result){
+//     var hbsObject = {
+//       files: result
+//     }
+//     res.render("index", hbsObject)
+//   })
+// })
+
+// Select all pins from the database and render them
+app.get("/", function(req, res) {
+    res.redirect( "/pins" );
+    console.log(req.pins);
+});
 
 app.post('/api/upload', upload.any(), function (req, res) {
 
@@ -65,7 +71,7 @@ app.get('/auth/google',
 //   request.  If authentication fails, the user will be redirected back to the
 //   login page.  Otherwise, the primary route function function will be called,
 //   which, in this example, will redirect the user to the home page.
-app.get('/auth/google/callback', 
+app.get('/auth/google/callback',
   passport.authenticate('google', { failureRedirect: '/login' }),
   function(req, res) {
 

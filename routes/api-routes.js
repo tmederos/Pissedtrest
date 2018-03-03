@@ -45,15 +45,23 @@ app.get("/api/pins/:category", function(req, res){
 })
 
 app.get("/boards", function(req, res){
-  db.board.findAll({
+  res.redirect("/api/boards/" + req.user.id)
+
+})
+
+app.get("/api/boards/:userid", function(req, res){
+  db.Boards.findAll({
     where: {
-      userid: req.user.id
+      id: req.params.userid,
     }
+  }).then(function(result){
+    console.log(result)
   })
 })
 
-app.get("/api/:userid/:boardname", function (req, res){
-  db.Boards.findAll({
+
+app.get("/api/boards/:boardname", function (req, res){
+  db.Boards.findOne({
     where: {
       id: req.params.userid,
       boardname: req.params.boardname
@@ -121,8 +129,12 @@ app.get('/auth/google/callback',
   passport.authenticate('google', { failureRedirect: '/login' }),
   function(req, res) {
 
-    res.redirect('/');
-
+    // db.User.create({
+    // }).then(function(result){
+    //   res.redirect('/');
+    // })
+    console.log(req.user)
+    res.redirect('/')
   });
 
 };

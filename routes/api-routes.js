@@ -27,9 +27,26 @@ var db = require("../models");
 module.exports = function(app) {
 
 app.get("/", function(req, res){
-
   db.Pin.findAll({}).then(function(result){
-    console.log(result)
+    hbsArray = result.filter(obj => obj.dataValues)
+    console.log(hbsArray)
+    var hbsObject = {
+      files: hbsArray
+    }
+   res.render("index", hbsObject)
+  })
+})
+
+app.get("/api/users", function(req, res){
+  db.User.findAll({}).then(function(result){
+    res.json(result)
+  })
+})
+
+app.get("/api/pins/", function(req, res){
+  db.Pin.findAll({
+  }).then(function(result){
+    res.json(result)
   })
 })
 
@@ -40,25 +57,29 @@ app.get("/api/pins/:category", function(req, res){
       category: req.params.category
     }
   }).then(function(result){
-    console.log(result)
+    res.json(result)
   })
 })
 
-app.get("/boards", function(req, res){
+app.get("/board", function(req, res){
   res.redirect("/api/boards/" + req.user.id)
+})
 
+app.get("/api/boards", function(req, res){
+  db.Board.findAll({}).then(function(result){
+    res.json(result)
+  })
 })
 
 app.get("/api/boards/:userid", function(req, res){
-  db.Boards.findAll({
+  db.Board.findAll({
     where: {
-      id: req.params.userid,
+      user_id: req.params.userid,
     }
   }).then(function(result){
-    console.log(result)
+    res.json(result)
   })
 })
-
 
 app.get("/api/boards/:boardname", function (req, res){
   db.Boards.findOne({
@@ -67,24 +88,28 @@ app.get("/api/boards/:boardname", function (req, res){
       boardname: req.params.boardname
     }
   }).then(function(result){
-    console.log(result)
+    res.json(result)
   })
 })
 
-app.put("/api/board/:pinid", function (req, res){
+app.post("/api/board/:pinid", function (req, res){
   //Update the user to add this to their board
-
+  db.Board.create({
+    category: req.body.category,
+    user_id: req.user.id,
+    pin_id: req.body.pinId
+  })
 })
 
 app.post("/api/board/:pinid", function (req,res){
 //Take user data and create a board,
-db.Board.create({
-  userid: req.user.id,
-  category: req.body.category,
-  pin_id: req.params.pinid
-}).then(function(result){
-  console.log(result)
-});
+  db.Board.create({
+    userid: req.user.id,
+    category: req.body.category,
+    pin_id: req.params.pinid
+  }).then(function(result){
+    console.log(result)
+  });
 
 })
 

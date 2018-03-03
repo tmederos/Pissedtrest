@@ -5,27 +5,20 @@ module.exports = function(sequelize, DataTypes) {
       primaryKey: true,
       autoIncrement: true
     },
-      username: {
+      user_id: {
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
         len: [1]
       }
-    },
-      email: {
-      type: DataTypes.STRING,
-      allowNull: true,
-      validate: {
-        len: [1]
-      }
-    },
+    }
     }, {
         timestamps: false
     });
     User.associate = function(models) {
       // Associating User with Pins
-      // When an User is deleted, also delete any associated Pins
-      User.hasMany(models.Pin, {
+      // When an User is deleted, also delete any associated Boards
+      User.hasMany(models.Board, {
         onDelete: "cascade"
       });
     };

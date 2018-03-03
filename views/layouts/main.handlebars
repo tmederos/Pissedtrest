@@ -6,6 +6,7 @@
   <title>File Upload - Test</title>
   <link rel="stylesheet" href="css/styles.css" media="screen" title="no title">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"></head>
+  <link rel="stylesheet" href="css/animate.css">
 
 <body>
   {{{body}}}
@@ -15,6 +16,24 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
  <!-- Custom Script -->
   <script src="js/script.js" type="text/javascript"></script>
+<!-- Masonry Layout -->
+  <script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.js"></script>
+<!-- imagesLoaded -->
+  <script src="https://unpkg.com/imagesloaded@4/imagesloaded.pkgd.js"></script>
+  <script>
+      var $grid = $(".grid").imagesLoaded(function () {
+        // init Masonry after all images have loaded
+          $grid.masonry({
+            // options
+            itemSelector: ".grid-item",
+            columnWidth: ".grid-sizer",
+            gutter: 1,
+            transitionDuration: "0.8s",
+            percentPosition: true,
+          });
+        });
+        console.log("running");
+      </script>
 
 </body>
 

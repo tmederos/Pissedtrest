@@ -19,8 +19,9 @@
 }
 
 .grid-item img {
-  width: 90%;
-  height: 90%;
+  width: 100%;
+  height: 100%;
+  margin: auto;
   overflow: auto;
   position: relative;
   -webkit-animation-duration: 3s;
@@ -29,9 +30,7 @@
   transition: width 2s;
 }
 
-
 .card-text {
-  opacity: .5;
   -webkit-transition: 0.5s;
   transition: 0.5s;
 }
@@ -45,7 +44,20 @@
 
 .grid-item:hover .card-text {
     opacity: 100;
+    color: #fff;
 }
+
+.grid-item:hover .card-title {
+  opacity: 100;
+  color: #fff;
+}
+
+.grid-item:hover {
+  background-color: #0093aa;
+  -webkit-transition: 1s;
+  transition: 1s;
+}
+
 
 body {
   margin: 0;

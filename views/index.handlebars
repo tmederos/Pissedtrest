@@ -1,27 +1,58 @@
-<div class="container">
-    <div class="row top-30">
-      <div class="col-md-4">
-        <form method="POST" enctype="multipart/form-data" id="fileUploadForm">
-          <div class="form-group">
-            <label for="inputFile">File input</label>
-            <input type="file" class="form-control-file" id="inputFile" name="files"/>
+
+      <!-- Navigation -->
+      <nav class="navbar navbar-expand-lg navbar-dark bg-secondary fixed-top">
+        <div class="container">
+          <a class="navbar-brand" href="#">Pissedtrest</a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive"
+            aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto">
+              <li class="nav-item">
+                <div class="justify-content-md-center">
+                  <form class="form-inline my-2 my-lg-0">
+                    <input class="form-control mr-sm-2" type="text" id="category-search" placeholder="Category search" aria-label="Search" style="width: 600px;">
+      
+                    <button class="btn btn-primary my-2 my-sm-0" id="searchBtn" type="submit">Search</button>
+                  </form>
+                </div>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" id="nav-board" href="/board">My Board</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" id="nav-login" href="/auth/google">Login</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" id="nav-upload" href="#">Upload</a>
+              </li>
+            </ul>
           </div>
-          <button id="btnSubmit" type="submit" value="Submit" class="btn btn-primary">Submit</button>
-      </form>
+        </div>
+      </nav>
+      <div class="container">
+    
+    <div class="row">
+      <div class="grid">
+        {{#each files}}
+            {{> files/files-partial}}
+        {{/each}}
       </div>
     </div>
 
     <div class="row">
-        {{#each files}}
-            {{> files/files-partial}}
-        {{/each}}
-    </div>
-
-    <div class="row">
         {{#each pins}}
-          <li>
-            {{title}} {{description}}
-          </li>
+            <div class="grid-item card" style="width: 18rem;">
+              <img class="animated bounceIn card-img-top" src="./uploads/red.jpg" alt="">
+              <div class="card-body">
+                <h5 class="card-title">Here is our Title</h5>
+                <p class="card-text">A close up orange flower. It actually isn't anymore since ive changed the photos.</p>
+                <span>
+                  <button type="button" class="btn btn-circle btn-dark">Pin It!</button>
+                </span>
+              </div>
+            </div>
         {{/each}}
     </div>
 </div>

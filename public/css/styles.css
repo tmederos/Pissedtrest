@@ -1,3 +1,58 @@
 .navbar-nav > :nth-child(2) {
     margin-left: 25px;
 }
+
+.container {
+  background-color: grey;
+}
+.grid-item {
+  margin: 1%;
+  overflow: auto;
+  padding: 1px;
+  float: left;
+  position: relative;
+  
+}
+.grid-sizer {
+  width: 5%;
+  height: 5%;
+}
+
+.grid-item img {
+  width: 90%;
+  height: 90%;
+  overflow: auto;
+  position: relative;
+  -webkit-animation-duration: 3s;
+  -webkit-animation-direction: 2s; 
+  -webkit-transition: width 2s;
+  transition: width 2s;
+}
+
+
+.card-text {
+  opacity: .5;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+}
+
+.card-text:hover {
+  opacity: 100;
+}
+.grid-item img:hover {
+  width: 80%;
+}
+
+.grid-item:hover .card-text {
+    opacity: 100;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.gutter-sizer {
+  width: 5%;
+}
+

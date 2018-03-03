@@ -12,6 +12,7 @@
 
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="css/styles.css" media="screen" title="no title">
+    <link rel="stylesheet" href="css/animate.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"></head>
 
     <!-- Custom styles for this template -->
@@ -89,14 +90,87 @@
         <div class="col-lg-12 text-center">
           <h1 class="mt-5">Images Here</h1>
           <!-- Test Card -->
-          <div class="card" style="width: 20rem;">
-            <img class="card-img-top" src="http://via.placeholder.com/318x180" alt="Card image cap">
-            <div class="card-block">
-              <h4 class="card-title">Card title</h4>
-              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-              <a href="#" id="1" class="btn btn-primary pinBtn">Pin This</a>
+          <div class="grid">
+            <div class="grid-sizer"></div>
+            <div class="grid-item card" style="width: 18rem;">
+              <img class="animated bounceIn card-img-top" src="./uploads/red.jpg" alt="">
+              <div class="card-body">
+                <h5 class="card-title">Here is our Title</h5>
+                <p class="card-text">A close up orange flower. It actually isn't anymore since ive changed the photos.</p>
+                <span><button type="button" class="btn btn-circle btn-dark">Pin It!</button></span>
+              </div>
             </div>
-          </div>
+            <div class="grid-item card" style="width: 18rem;">
+              <img class="animated bounceIn card-img-top" src="./uploads/red.jpg" alt="">
+              <div class="card-body">
+                <h5 class="card-title">Here is our Title</h5>
+                <p class="card-text">A close up orange flower. It actually isn't anymore since ive changed the photos.</p>
+                <span>
+                  <button type="button" class="btn btn-circle btn-dark">Pin It!</button>
+                </span>
+              </div>
+            </div>
+            <div class="grid-item card" style="width: 18rem;">
+              <img class="animated bounceIn card-img-top" src="./uploads/red.jpg" alt="">
+              <div class="card-body">
+                <h5 class="card-title">Here is our Title</h5>
+                <p class="card-text">A close up orange flower. It actually isn't anymore since ive changed the photos.</p>
+                <span>
+                  <button type="button" class="btn btn-circle btn-dark">Pin It!</button>
+                </span>
+              </div>
+            </div>
+            <div class="grid-item card" style="width: 18rem;">
+              <img class="animated bounceIn card-img-top" src="./uploads/red.jpg" alt="">
+              <div class="card-body">
+                <h5 class="card-title">Here is our Title</h5>
+                <p class="card-text">A close up orange flower. It actually isn't anymore since ive changed the photos.</p>
+                <span>
+                  <button type="button" class="btn btn-circle btn-dark">Pin It!</button>
+                </span>
+              </div>
+            </div>
+            <div class="grid-item card" style="width: 18rem;">
+              <img class="animated bounceIn card-img-top" src="./uploads/red.jpg" alt="">
+              <div class="card-body">
+                <h5 class="card-title">Here is our Title</h5>
+                <p class="card-text">A close up orange flower. It actually isn't anymore since ive changed the photos.</p>
+                <span>
+                  <button type="button" class="btn btn-circle btn-dark">Pin It!</button>
+                </span>
+              </div>
+            </div>
+            <div class="grid-item card" style="width: 18rem;">
+              <img class="animated bounceIn card-img-top" src="./uploads/red.jpg" alt="">
+              <div class="card-body">
+                <h5 class="card-title">Here is our Title</h5>
+                <p class="card-text">A close up orange flower. It actually isn't anymore since ive changed the photos.</p>
+                <span>
+                  <button type="button" class="btn btn-circle btn-dark">Pin It!</button>
+                </span>
+              </div>
+            </div>
+            <div class="grid-item card" style="width: 18rem;">
+              <img class="animated bounceIn card-img-top" src="./uploads/red.jpg" alt="">
+              <div class="card-body">
+                <h5 class="card-title">Here is our Title</h5>
+                <p class="card-text">A close up orange flower. It actually isn't anymore since ive changed the photos.</p>
+                <span>
+                  <button type="button" class="btn btn-circle btn-dark">Pin It!</button>
+                </span>
+              </div>
+            </div>
+            <div class="grid-item card" style="width: 18rem;">
+              <img class="animated bounceIn card-img-top" src="./uploads/red.jpg" alt="">
+              <div class="card-body">
+                <h5 class="card-title">Here is our Title</h5>
+                <p class="card-text">A close up orange flower. It actually isn't anymore since ive changed the photos.</p>
+                <span>
+                  <button type="button" class="btn btn-circle btn-dark">Pin It!</button>
+                </span>
+              </div>
+            </div>
+         
         </div>
       </div>
       <!-- Modal -->
@@ -140,6 +214,24 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <!-- Custom Script -->
   <script src="js/uploadscript.js" type="text/javascript"></script>
+  <!-- Masonry Layout -->
+  <script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.js"></script>
+  <!-- imagesLoaded -->
+  <script src="https://unpkg.com/imagesloaded@4/imagesloaded.pkgd.js"></script>
+  <script>
+    var $grid = $(".grid").imagesLoaded(function () {
+      // init Masonry after all images have loaded
+      $grid.masonry({
+        // options
+        itemSelector: ".grid-item",
+        columnWidth: ".grid-sizer",
+        gutter: 1,
+        transitionDuration: "0.8s",
+        percentPosition: true,
+      });
+    });
+    console.log("running");
+  </script>
   </body>
 
 </html>

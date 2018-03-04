@@ -1,41 +1,14 @@
-{{log this}}
 <div class="container">
-  <div class="row align-items-center justify-content-center border mt-5 mb-5 p-4">
-    <div class="col text-center">
-      <button type="button" class="btn btn-primary categoryBtn">Cat 1</button>
-    </div>
-    <div class="col text-center">
-      <button type="button" class="btn btn-primary categoryBtn">Cat 2</button>
-    </div>
-    <div class="col text-center">
-      <button type="button" class="btn btn-primary categoryBtn">Cat 3</button>
-    </div>
-    <div class="col text-center">
-      <button type="button" class="btn btn-primary categoryBtn">Cat 4</button>
-    </div>
-    <div class="col text-center">
-      <button type="button" class="btn btn-primary categoryBtn">Cat 5</button>
-    </div>
-    <div class="col text-center">
-      <button type="button" class="btn btn-primary categoryBtn">Cat 6</button>
+  <h1>Your Pins</h1>
+<div class="row">
+    <div class="grid grid-container">
+      {{#each pins}} {{> pins/user-pins-partial}} {{/each}}
     </div>
   </div>
 
-  
-  <div class="row">
-    <div class="grid grid-container">
-      {{#each pins}} {{> pins/pins-partial}} {{/each}}
-    </div>
-  </div>
-{{!-- 
-  <div class="row">
- {{#each pins}} 
-    {{> pins/pins-partial}} 
-  {{/each}}
-  </div> --}}
 </div>
 
- <!-- Modal -->
+<!-- Modal -->
   <div class="modal fade" id="uploadModal">
     <div class="modal-dialog" role="document">
       <div class="modal-content">

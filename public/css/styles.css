@@ -2,9 +2,10 @@
     margin-left: 25px;
 }
 
-.container {
+.grid-container {
   background-color: grey;
 }
+
 .grid-item {
   margin: 1%;
   overflow: auto;
@@ -57,12 +58,12 @@
   -webkit-transition: 1s;
   transition: 1s;
 }
-
+/* 
 
 body {
   margin: 0;
   padding: 0;
-}
+} */
 
 .gutter-sizer {
   width: 5%;

@@ -5,6 +5,16 @@ $("#nav-upload").on("click", function(){
   $('#uploadModal').modal('show')
 })
 
+$("#nav-board").on("click", function(){
+  $.getJSON("api/user_data", function(data) {
+    console.log(data)
+    // Make sure the data contains the username as expected before using it
+    if (data.hasOwnProperty('userid')) {
+        getBoards(data.userid);
+    }
+});
+})
+
 //Submit button click handler
 $("#btnSubmit").on("click", function (event) {
   event.preventDefault();
@@ -14,9 +24,14 @@ $("#btnSubmit").on("click", function (event) {
 //Search Button click handler
 $("#searchBtn").on("click", function(event){
   event.preventDefault();
-  var category = $("#category-search").val().trim();
-  categorySearch(category);
+  var category = encodeURI($("#category-search").val().trim());
+  window.location.href = "/search/" + category
 
+})
+
+$(".boardBtn").on("click", function(){
+  var category = encodeURI($(this).attr("id"))
+  window.location.href = "/boards/" + category
 })
 
 //Category button click handler
@@ -24,20 +39,68 @@ $(".categoryBtn").on("click", function(event){
   event.preventDefault();
   var category = $(this).text()
   categorySearch(category);
-})
+  })
+
+
 
 //Pin click handler
 $(".pinBtn").on("click", function (event){
-  var id = $(this).attr("id")
-  var url = "api/pin/" + id
-  console.log(url)
+  //getBoards();
+
+  var pinId = $(this).attr("id")
+
+  $('#boardModal').modal('show')
+
+  $("#boardSubmit").on("click", function(){
+    var category;
+  
+    console.log($('#newBoardInput').val())
+
+    if($('#newBoardInput').val()){
+      category = $('#newBoardInput').val()
+    }
+    else {
+      category = $("#userCategory").find(":selected").text();
+    }
+
+    console.log("Id " + pinId)
+    console.log("Category " + category)
+  
+    var postObj = {
+      category: category,
+      pinId: pinId
+    }
+
+    $.ajax({
+      type: "POST",
+      data: postObj,
+      url: "/api/boards"
+    }).then(function(result){
+      console.log(result)
+    })
+
+  });
+});
+
+
+//Functions//
+//-----------------------------------//
+
+var getBoards = function(userid){
+  var url
+  if (userid){
+    url = "/api/boards/" + userid
+  }
+  else {
+    url = "/api/boards"
+  }
   $.ajax({
-    type: "PUT",
+    type: "GET",
     url: url
   }).then(function(result){
     console.log(result)
   })
-})
+}
 
 var uploadFunction = function () {
   var title = $("#fileTitle").val().trim()

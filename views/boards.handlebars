@@ -1,27 +1,76 @@
 <div class="container">
-    <div class="row top-30">
-      <div class="col-md-4">
-        <form method="POST" enctype="multipart/form-data" id="fileUploadForm">
-          <div class="form-group">
-            <label for="inputFile">File input</label>
-            <input type="file" class="form-control-file" id="inputFile" name="files"/>
-          </div>
-          <button id="btnSubmit" type="submit" value="Submit" class="btn btn-primary">Submit</button>
-      </form>
+<h1>Your Boards</h1>
+
+    <div class="row">
+      <div class="grid grid-container">
+      {{#each boards}} {{> boards/boards-partial}} {{/each}}
       </div>
     </div>
 
-    <div class="row">
-        {{#each files}}
-            {{> files/files-partial}}
-        {{/each}}
-    </div>
-
-    <div class="row">
-        {{#each pins}}
-          <li>
-            {{title}} {{description}}
-          </li>
-        {{/each}}
-    </div>
+    
 </div>
+
+<!-- Modal -->
+  <div class="modal fade" id="uploadModal">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Upload</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form method="POST" enctype="multipart/form-data" id="fileUploadForm">
+            <div class="form-group">
+              <label for="fileTitle">Title</label>
+              <input type="email" class="form-control" id="fileTitle" placeholder="Title">
+            </div>
+            <div class="form-group">
+              <label for="fileDesc">Description</label>
+              <input type="email" class="form-control" id="fileDesc" placeholder="Description">
+            </div>
+            <div class="form-group">
+              <label for="fileCat">Category</label>
+              <input type="email" class="form-control" id="fileCat" placeholder="Category">
+            </div>
+            <div class="form-group">
+              <label for="inputFile">File input</label>
+              <input type="file" class="form-control-file" id="inputFile" name="files" />
+            </div>
+            <button id="btnSubmit" type="submit" value="Submit" class="btn btn-primary">Upload</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+<!-- Board Modal -->
+  <div class="modal fade" id="boardModal">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Add to a board</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <select id="userCategory">
+            <option disabled selected value> -- Select an existing board -- </option>
+            {{#each pins}} {{> boards/board-selector}} {{/each}}
+            
+          </select>
+          <p>Or create a new board</p>
+          <form>
+            <div class="form-group">
+              <label for="newBoardInput">New Board</label>
+              <input type="text" class="form-control" id="newBoardInput" aria-describedby="emailHelp" placeholder="Board Name">
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" id="boardSubmit">Add to Board</button>
+      </div>
+      </div>
+    </div>
+  </div>

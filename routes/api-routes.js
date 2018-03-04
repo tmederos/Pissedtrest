@@ -20,18 +20,17 @@ var storage = multer.diskStorage({
 })
 
 var upload = multer({ storage: storage })
-var db = require("../models");
-
+var models = require("../models");
+var db = models.db
+var Op = models.Op
 // Routes
 // =============================================================
 module.exports = function(app) {
 
 app.get("/", function(req, res){
   db.Pin.findAll({}).then(function(result){
-    hbsArray = result.filter(obj => obj.dataValues)
-    console.log(hbsArray)
     var hbsObject = {
-      files: hbsArray
+      pins: result
     }
    res.render("index", hbsObject)
   })
@@ -51,7 +50,9 @@ app.get("/api/pins/", function(req, res){
 })
 
 app.get("/api/pins/:category", function(req, res){
-
+  // var hbsObject = {
+  //   boards: result
+  // }
   db.Pin.findAll({
     where: {
       category: req.params.category
@@ -61,38 +62,67 @@ app.get("/api/pins/:category", function(req, res){
   })
 })
 
-app.get("/board", function(req, res){
-  res.redirect("/api/boards/" + req.user.id)
-})
-
 app.get("/api/boards", function(req, res){
-  db.Board.findAll({}).then(function(result){
-    res.json(result)
+
+  db.Board.findAll({
+    where: {
+      user_id: req.user.id
+    }
+  }).then(function(result){
+    var hbsObject = {
+      boards: result
+    }
+    console.log(result)
+    res.render("partials/boards/boards-partial.handlebars", hbsObject)
   })
 })
 
-app.get("/api/boards/:userid", function(req, res){
+app.get("/boards/:userid", function(req, res){
   db.Board.findAll({
     where: {
       user_id: req.params.userid,
+      // group: ['category']
     }
   }).then(function(result){
-    res.json(result)
+    console.log(result)
+    var hbsObject = {
+      boards: result
+    }
+   res.render("boards", hbsObject)
   })
 })
 
-app.get("/api/boards/:boardname", function (req, res){
-  db.Boards.findOne({
+app.get("/boards/:user/:category", function (req, res){
+  var category = decodeURI(req.params.category)
+  db.Board.findAll({
+    attributes: ["id"],
     where: {
-      id: req.params.userid,
-      boardname: req.params.boardname
+      category: category,
+      user_id: req.params.user
     }
   }).then(function(result){
-    res.json(result)
+    idArray = []
+    result.forEach(function(item){
+      idArray.push(item.dataValues.id)
+    })
+    console.log(idArray)
+    db.Pin.findAll({
+      where: {
+        id: {
+          [Op.or]: idArray
+        }
+      }
+    }).then(function(result){
+      console.log(result)
+      var hbsObject = {
+      pins: result
+    }
+      res.render("pins", hbsObject)
+    })
   })
-})
+});
 
-app.post("/api/board/:pinid", function (req, res){
+app.post("/api/boards", function (req, res){
   //Update the user to add this to their board
   db.Board.create({
     category: req.body.category,
@@ -142,6 +172,21 @@ app.post('/api/upload', upload.any(), function (req, res) {
   })
 })
 
+app.get("/search/:query", function(req, res) {
+  var searchQuery = decodeURI(req.params.query)
+  db.Pin.findAll({
+    where: {
+      category: searchQuery
+    }
+  }).then(function(result){
+    var hbsObject = {
+      pins: result
+    }
+    res.render("pins", hbsObject)
+  })
+
+})
+
 app.get('/auth/google',
   passport.authenticate('google', { scope: ['https://www.googleapis.com/auth/plus.login'] }));
 
@@ -161,6 +206,18 @@ app.get('/auth/google/callback',
     console.log(req.user)
     res.redirect('/')
   });
+
+app.get('/api/user_data', function(req, res) {
+
+  if (req.user === undefined) {
+      // The user is not logged in
+      res.json({});
+  } else {
+      res.json({
+          userid: req.user.id
+      });
+  }
+});
 
 };
 

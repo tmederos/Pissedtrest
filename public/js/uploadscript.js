@@ -1,18 +1,64 @@
+
+
 $(document).ready(function() {
+var loggedIn;
+
+var loginCheck = function(){
+  var userid;
+  $.ajax({
+    type: "GET",
+    url: "/api/user_data"
+  }).then(function(result){
+    userid = result.id
+    loginToggle(userid)
+    boardToggle(userid)
+    if (userid){
+      loggedIn = true
+    } else {
+      loggedIn = false
+    }
+  })
+}
+
+loginCheck();
+console.log(loggedIn)
+
+var loginToggle = function(state){
+  if (state){
+    $("#nav-login").text("Logout").attr("href", "/logout")
+  } else {
+    $("#nav-login").text("Login")
+  }
+}
+
+var boardToggle = function(state){
+  if (!state){
+    $("#nav-board").attr("href", "#")
+  }
+}
 
 //Upload button click handler
 $("#nav-upload").on("click", function(){
-  $('#uploadModal').modal('show')
+  if (loggedIn){
+    $('#uploadModal').modal('show')
+  } else {
+    $('#loginModal').modal('show')
+  }
+
 })
 
 $("#nav-board").on("click", function(){
-  $.getJSON("api/user_data", function(data) {
-    console.log(data)
-    // Make sure the data contains the username as expected before using it
-    if (data.hasOwnProperty('userid')) {
-        getBoards(data.userid);
-    }
-});
+if (!loggedIn){
+  $('#loginModal').modal('show')
+}
+  
+//   $.getJSON("api/user_data", function(data) {
+//     console.log("response: " + data)
+//     // Make sure the data contains the username as expected before using it
+//     if (data.hasOwnProperty('userid')) {
+//         getBoards(data.userid);
+//     }
+// });
 })
 
 //Submit button click handler
@@ -31,7 +77,8 @@ $("#searchBtn").on("click", function(event){
 
 $(".boardBtn").on("click", function(){
   var category = encodeURI($(this).attr("id"))
-  window.location.href = "/boards/" + category
+  var path = window.location.pathname
+  window.location.href = path + category
 })
 
 //Category button click handler
@@ -45,8 +92,7 @@ $(".categoryBtn").on("click", function(event){
 
 //Pin click handler
 $(".pinBtn").on("click", function (event){
-  //getBoards();
-
+if (loggedIn){
   var pinId = $(this).attr("id")
 
   $('#boardModal').modal('show')
@@ -74,12 +120,23 @@ $(".pinBtn").on("click", function (event){
     $.ajax({
       type: "POST",
       data: postObj,
-      url: "/api/boards"
+      url: "/api/boards",
+      success: function(result) {
+        if(result.status == 200){
+          $('#boardModal').modal('hide')
+        }
+        else{
+            console.log("Error")
+        }
+    }
     }).then(function(result){
       console.log(result)
     })
 
-  });
+  })
+  } else {
+    $('#loginModal').modal('show')  
+  }
 });
 
 
@@ -152,4 +209,7 @@ var categorySearch = function(category){
   });
 }
     
+
+
+
 });

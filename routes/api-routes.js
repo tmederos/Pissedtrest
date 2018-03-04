@@ -66,7 +66,7 @@ app.get("/api/boards", function(req, res){
 
   db.Board.findAll({
     where: {
-      user_id: req.user.id
+      user_id: req.user.id,
     }
   }).then(function(result){
     var hbsObject = {
@@ -79,10 +79,11 @@ app.get("/api/boards", function(req, res){
 
 app.get("/boards/:userid", function(req, res){
   db.Board.findAll({
+    attributes: ['category'],
     where: {
       user_id: req.params.userid,
-      // group: ['category']
-    }
+    },
+    group: ['category']
   }).then(function(result){
     console.log(result)
     var hbsObject = {
@@ -92,13 +93,13 @@ app.get("/boards/:userid", function(req, res){
   })
 })
 
-app.get("/boards/:user/:category", function (req, res){
+app.get("/boards/:userid/:category", function (req, res){
   var category = decodeURI(req.params.category)
   db.Board.findAll({
     attributes: ["id"],
     where: {
       category: category,
-      user_id: req.params.user
+      user_id: req.params.userid
     }
   }).then(function(result){
     idArray = []
@@ -128,6 +129,8 @@ app.post("/api/boards", function (req, res){
     category: req.body.category,
     user_id: req.user.id,
     pin_id: req.body.pinId
+  }).then(function(result){
+    res.json({success : "Added Successfully", status : 200})
   })
 })
 
@@ -199,24 +202,33 @@ app.get('/auth/google/callback',
   passport.authenticate('google', { failureRedirect: '/login' }),
   function(req, res) {
 
-    // db.User.create({
-    // }).then(function(result){
-    //   res.redirect('/');
-    // })
-    console.log(req.user)
-    res.redirect('/')
+    db.User.findOrCreate({
+      where: {  
+        user_id: req.user.id
+        }
+    }).then(function(result){
+      console.log(result)
+      res.redirect('/');
+    })
+   
   });
 
-app.get('/api/user_data', function(req, res) {
+app.get('/logout', function(req, res){
+  req.logout();
+  res.redirect('/');
+});
 
-  if (req.user === undefined) {
-      // The user is not logged in
-      res.json({});
-  } else {
-      res.json({
-          userid: req.user.id
-      });
-  }
+app.get('/api/user_data', function(req, res) {
+  
+  // if (req.user === undefined) {
+  //     // The user is not logged in
+  //     res.json({});
+  // } else {
+  //     res.json({
+  //         userid: req.user.id
+  //     });
+  // }
+  res.send(req.user)
 });
 
 };

@@ -4,6 +4,7 @@
 
 .grid-container {
   background-color: grey;
+  width: 100%;
 }
 
 .grid-item {

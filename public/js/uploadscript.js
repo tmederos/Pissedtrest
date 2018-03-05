@@ -1,5 +1,3 @@
-
-
 $(document).ready(function() {
 var loggedIn;
 
@@ -21,7 +19,6 @@ var loginCheck = function(){
 }
 
 loginCheck();
-console.log(loggedIn)
 
 var loginToggle = function(state){
   if (state){
@@ -44,21 +41,12 @@ $("#nav-upload").on("click", function(){
   } else {
     $('#loginModal').modal('show')
   }
-
 })
 
 $("#nav-board").on("click", function(){
 if (!loggedIn){
   $('#loginModal').modal('show')
-}
-  
-//   $.getJSON("api/user_data", function(data) {
-//     console.log("response: " + data)
-//     // Make sure the data contains the username as expected before using it
-//     if (data.hasOwnProperty('userid')) {
-//         getBoards(data.userid);
-//     }
-// });
+  }
 })
 
 //Submit button click handler
@@ -78,7 +66,7 @@ $("#searchBtn").on("click", function(event){
 $(".boardBtn").on("click", function(){
   var category = encodeURI($(this).attr("id"))
   var path = window.location.pathname
-  window.location.href = path + category
+  window.location.href = path + "/" + category
 })
 
 //Category button click handler
@@ -86,7 +74,7 @@ $(".categoryBtn").on("click", function(event){
   event.preventDefault();
   var category = $(this).text()
   categorySearch(category);
-  })
+})
 
 
 
@@ -94,11 +82,32 @@ $(".categoryBtn").on("click", function(event){
 $(".pinBtn").on("click", function (event){
 if (loggedIn){
   var pinId = $(this).attr("id")
-
+  renderCategories()
   $('#boardModal').modal('show')
-
   $("#boardSubmit").on("click", function(){
-    var category;
+    $("#boardSubmit").prop("disabled", true);
+    boardSubmit(pinId)
+  })
+  } else {
+    $('#loginModal').modal('show')  
+  }
+});
+
+var renderCategories = function(){
+  $.ajax({
+    type: "GET",
+    url: "/api/boards"
+  }).then(function(results){
+    console.log("Board results" + results)
+    results.forEach(function(element){
+      var option = $("<option>").text(element.category)
+      $("#userCategory").append(option)
+    })
+  })
+}
+
+var boardSubmit = function(id){
+  var category;
   
     console.log($('#newBoardInput').val())
 
@@ -109,12 +118,12 @@ if (loggedIn){
       category = $("#userCategory").find(":selected").text();
     }
 
-    console.log("Id " + pinId)
+    console.log("Id " + id)
     console.log("Category " + category)
   
     var postObj = {
       category: category,
-      pinId: pinId
+      pinId: id
     }
 
     $.ajax({
@@ -124,6 +133,8 @@ if (loggedIn){
       success: function(result) {
         if(result.status == 200){
           $('#boardModal').modal('hide')
+          $("#boardSubmit").prop("disabled", false);
+
         }
         else{
             console.log("Error")
@@ -132,13 +143,7 @@ if (loggedIn){
     }).then(function(result){
       console.log(result)
     })
-
-  })
-  } else {
-    $('#loginModal').modal('show')  
-  }
-});
-
+}
 
 //Functions//
 //-----------------------------------//
@@ -191,6 +196,7 @@ var uploadFunction = function () {
       success: function(result) {
         if(result.status == 200){
           $('#uploadModal').modal('hide')
+          $("#btnSubmit").prop("disabled", false)
         }
         else{
             console.log("Error")

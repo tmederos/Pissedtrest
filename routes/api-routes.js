@@ -4,22 +4,31 @@
 
 // Dependencies
 // =============================================================
-
+var aws = require('aws-sdk')
 var multer = require("multer");
+var multerS3 = require('multer-s3')
 var path = require("path")
 var passport = require('passport');
 
+aws.config.update({
+  secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
+  accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+  region: 'us-west-1'
+});
 
-var storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, './public/uploads')
-  },
-  filename: function (req, file, cb) {
-    cb(null, Date.now() + path.extname(file.originalname)) //Appending file extention
-  }
+var s3 = new aws.S3()
+
+var upload = multer({
+  storage: multerS3({
+    s3: s3,
+    bucket: process.env.S3_BUCKET,
+    acl: 'public-read',
+    key: function (req, file, cb) {
+      cb(null, Date.now() + path.extname(file.originalname))
+    }
+  })
 })
 
-var upload = multer({ storage: storage })
 var models = require("../models");
 var db = models.db
 var Op = models.Op
@@ -63,17 +72,18 @@ app.get("/api/pins/:category", function(req, res){
 })
 
 app.get("/api/boards", function(req, res){
-
   db.Board.findAll({
+    attributes: ['category'],
     where: {
       user_id: req.user.id,
-    }
+    },
+    group: ['category']
   }).then(function(result){
     var hbsObject = {
       boards: result
     }
     console.log(result)
-    res.render("partials/boards/boards-partial.handlebars", hbsObject)
+    res.send(result)
   })
 })
 
@@ -96,17 +106,18 @@ app.get("/boards/:userid", function(req, res){
 app.get("/boards/:userid/:category", function (req, res){
   var category = decodeURI(req.params.category)
   db.Board.findAll({
-    attributes: ["id"],
+    attributes: ["pin_id"],
     where: {
       category: category,
       user_id: req.params.userid
     }
   }).then(function(result){
+    console.log(result)
     idArray = []
     result.forEach(function(item){
-      idArray.push(item.dataValues.id)
+      idArray.push(item.dataValues.pin_id)
     })
-    console.log(idArray)
+    //console.log(idArray)
     db.Pin.findAll({
       where: {
         id: {
@@ -157,9 +168,9 @@ app.post('/api/upload', upload.any(), function (req, res) {
   console.log("Title "+ title)
 
 	//var filename = req.files[0].originalname;  // This will give renamed file name
-  var filepath = req.files[0].path;// This will give file path from current location
-  filepath = filepath.split("public/").pop() //Removes the "public/" path from the stored Image location
-  filepath = filepath.replace(/\\/g,"&#92;"); // This will replace 'backslash' with it's ASCII code in path
+  // var filepath = req.files[0].path;// This will give file path from current location
+  // filepath = filepath.split("public/").pop() //Removes the "public/" path from the stored Image location
+  // filepath = filepath.replace(/\\/g,"&#92;"); // This will replace 'backslash' with it's ASCII code in path
 	//var filetype = req.files[0].mimetype;  // This will give mimetype of file
 
 	// res.setHeader( 'content-type', 'application/json' );
@@ -169,7 +180,7 @@ app.post('/api/upload', upload.any(), function (req, res) {
     description: description,
     uploaded_by: req.user.id,
     category: category,
-    filepath: filepath
+    filepath: req.files[0].location
   }).then(function(dbPost) {
     res.json({success : "Updated Successfully", status : 200})
   })
@@ -185,7 +196,7 @@ app.get("/search/:query", function(req, res) {
     var hbsObject = {
       pins: result
     }
-    res.render("pins", hbsObject)
+    res.render("search-results", hbsObject)
   })
 
 })
@@ -220,14 +231,6 @@ app.get('/logout', function(req, res){
 
 app.get('/api/user_data', function(req, res) {
   
-  // if (req.user === undefined) {
-  //     // The user is not logged in
-  //     res.json({});
-  // } else {
-  //     res.json({
-  //         userid: req.user.id
-  //     });
-  // }
   res.send(req.user)
 });
 

@@ -1,7 +1,7 @@
 # Pissedtrest
 :rage::rage::rage::rage::rage::rage::rage::rage::rage::rage::rage::rage::rage::rage::rage::rage::rage::rage::rage::rage::rage::rage::rage::rage::rage::rage::rage::rage::rage::rage::rage::rage::rage::rage:
 
-Pissedtrest is a Pintrest clone...Instead of pinning things you like, you pin things you HATE. All those people who hang toilet paper wrong, can't park, make products that don't work properly... Here is your place to vent.
+Pissedtrest is a Pintrest clone...Instead of pinning things you like, you pin things you HATE. For all those times when people hang toilet paper wrong, take up two parking spaces, or make products that don't work properly... Here is your place to vent about it.
 
 
 # Running Tests

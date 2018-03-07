@@ -4,7 +4,9 @@ const img = require('easyimage');
 const express = require("express");
 const bodyParser = require("body-parser");
 const path = require("path");
-var db = require("./models");
+var models = require("./models");
+var db = models.db
+var Op = models.Op
 var passport = require('passport');
 var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 var session = require("express-session");
@@ -16,7 +18,7 @@ const app = express();
 app.use(cookieParser())
 
 // Serve static content for the app from the "public" directory in the application directory.
-app.use(express.static("public"));
+app.use(express.static(path.join(__dirname, "public")));
 
 app.use(session({ secret: 'keyboard cat' }));
 
@@ -29,7 +31,11 @@ app.use(bodyParser.json());
 // Set Handlebars.
 var exphbs = require("express-handlebars");
 
-app.engine("handlebars", exphbs({ defaultLayout: "main" }));
+app.engine("handlebars", exphbs({ 
+  defaultLayout: 'main', 
+  layoutsDir: __dirname + '/views/layouts/',
+  partialsDir: __dirname + '/views/partials/' 
+  }));
 app.set("view engine", "handlebars");
 
 app.use(passport.initialize());
@@ -69,12 +75,7 @@ require("./routes/html-routes.js")(app);
 
 // Syncing our sequelize models and then starting our Express app
 // =============================================================
-// Will not recreate the database
-// db.sequelize.sync({ force: false }).then(function() {
-//   app.listen(PORT, function() {
-//     console.log("Sequelize listening on PORT " + PORT);
-//   });
-// });
+
 db.sequelize.sync({ force: false }).then(function() {
   app.listen(PORT, function() {
     console.log("Sequelize listening on PORT " + PORT);

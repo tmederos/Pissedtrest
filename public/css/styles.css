@@ -1,3 +1,72 @@
 .navbar-nav > :nth-child(2) {
     margin-left: 25px;
 }
+
+.grid-container {
+  background-color: grey;
+  width: 100%;
+}
+
+.grid-item {
+  margin: 1%;
+  overflow: auto;
+  padding: 1px;
+  float: left;
+  position: relative;
+  
+}
+.grid-sizer {
+  width: 5%;
+  height: 5%;
+}
+
+.grid-item img {
+  width: 100%;
+  height: 100%;
+  margin: auto;
+  overflow: auto;
+  position: relative;
+  -webkit-animation-duration: 3s;
+  -webkit-animation-direction: 2s; 
+  -webkit-transition: width 2s;
+  transition: width 2s;
+}
+
+.card-text {
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+}
+
+.card-text:hover {
+  opacity: 100;
+}
+.grid-item img:hover {
+  width: 80%;
+}
+
+.grid-item:hover .card-text {
+    opacity: 100;
+    color: #fff;
+}
+
+.grid-item:hover .card-title {
+  opacity: 100;
+  color: #fff;
+}
+
+.grid-item:hover {
+  background-color: #0093aa;
+  -webkit-transition: 1s;
+  transition: 1s;
+}
+/* 
+
+body {
+  margin: 0;
+  padding: 0;
+} */
+
+.gutter-sizer {
+  width: 5%;
+}
+

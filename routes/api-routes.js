@@ -4,82 +4,156 @@
 
 // Dependencies
 // =============================================================
-
+var aws = require('aws-sdk')
 var multer = require("multer");
+var multerS3 = require('multer-s3')
 var path = require("path")
 var passport = require('passport');
 
+aws.config.update({
+  secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
+  accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+  region: 'us-west-1'
+});
 
-var storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, './public/uploads')
-  },
-  filename: function (req, file, cb) {
-    cb(null, Date.now() + path.extname(file.originalname)) //Appending file extention
-  }
+var s3 = new aws.S3()
+
+var upload = multer({
+  storage: multerS3({
+    s3: s3,
+    bucket: process.env.S3_BUCKET,
+    acl: 'public-read',
+    key: function (req, file, cb) {
+      cb(null, Date.now() + path.extname(file.originalname))
+    }
+  })
 })
 
-var upload = multer({ storage: storage })
-var db = require("../models");
-
+var models = require("../models");
+var db = models.db
+var Op = models.Op
 // Routes
 // =============================================================
 module.exports = function(app) {
 
-app.get("/api/users", function(req, res){
-
-  db.User.findAll({}).then(function(result){
-    res.json(result);
-    console.log(result)
+app.get("/", function(req, res){
+  db.Pin.findAll({}).then(function(result){
+    var hbsObject = {
+      pins: result
+    }
+   res.render("index", hbsObject)
   })
 })
 
+app.get("/api/users", function(req, res){
+  db.User.findAll({}).then(function(result){
+    res.json(result)
+  })
+})
+
+app.get("/api/pins/", function(req, res){
+  db.Pin.findAll({
+  }).then(function(result){
+    res.json(result)
+  })
+})
 
 app.get("/api/pins/:category", function(req, res){
-
+  // var hbsObject = {
+  //   boards: result
+  // }
   db.Pin.findAll({
     where: {
       category: req.params.category
     }
   }).then(function(result){
+    res.json(result)
+  })
+})
+
+app.get("/api/boards", function(req, res){
+  db.Board.findAll({
+    attributes: ['category'],
+    where: {
+      user_id: req.user.id,
+    },
+    group: ['category']
+  }).then(function(result){
+    var hbsObject = {
+      boards: result
+    }
     console.log(result)
     res.json(result)
   })
 })
 
-app.get("/boards", function(req, res){
-  db.board.findAll({
+app.get("/boards/:userid", function(req, res){
+  db.Board.findAll({
+    attributes: ['category'],
     where: {
-      userid: req.user.id
+      user_id: req.params.userid,
+    },
+    group: ['category']
+  }).then(function(result){
+    console.log(result)
+    var hbsObject = {
+      boards: result
     }
+   res.render("boards", hbsObject)
   })
 })
 
-app.get("/api/:userid/:boardname", function (req, res){
-  db.Boards.findAll({
+app.get("/boards/:userid/:category", function (req, res){
+  var category = decodeURI(req.params.category)
+  db.Board.findAll({
+    attributes: ["pin_id"],
     where: {
-      id: req.params.userid,
-      boardname: req.params.boardname
+      category: category,
+      user_id: req.params.userid
     }
   }).then(function(result){
     console.log(result)
+    idArray = []
+    result.forEach(function(item){
+      idArray.push(item.dataValues.pin_id)
+    })
+    //console.log(idArray)
+    db.Pin.findAll({
+      where: {
+        id: {
+          [Op.or]: idArray
+        }
+      }
+    }).then(function(result){
+      console.log(result)
+      var hbsObject = {
+      pins: result
+    }
+      res.render("pins", hbsObject)
+    })
   })
-})
+});
 
-app.put("/api/board/:pinid", function (req, res){
+app.post("/api/boards", function (req, res){
   //Update the user to add this to their board
-
+  db.Board.create({
+    category: req.body.category,
+    user_id: req.user.id,
+    pin_id: req.body.pinId
+  }).then(function(result){
+    res.json({success : "Added Successfully", status : 200})
+  })
 })
 
 app.post("/api/board/:pinid", function (req,res){
 //Take user data and create a board,
-db.Board.create({
-  userid: req.user.id,
-  category: req.body.category,
-  pin_id: req.params.pinid
-}).then(function(result){
-  console.log(result)
-});
+  db.Board.create({
+    userid: req.user.id,
+    category: req.body.category,
+    pin_id: req.params.pinid
+  }).then(function(result){
+    console.log(result)
+  });
 
 })
 
@@ -94,9 +168,9 @@ app.post('/api/upload', upload.any(), function (req, res) {
   console.log("Title "+ title)
 
 	//var filename = req.files[0].originalname;  // This will give renamed file name
-  var filepath = req.files[0].path;// This will give file path from current location
-  filepath = filepath.split("public/").pop() //Removes the "public/" path from the stored Image location
-  filepath = filepath.replace(/\\/g,"&#92;"); // This will replace 'backslash' with it's ASCII code in path
+  // var filepath = req.files[0].path;// This will give file path from current location
+  // filepath = filepath.split("public/").pop() //Removes the "public/" path from the stored Image location
+  // filepath = filepath.replace(/\\/g,"&#92;"); // This will replace 'backslash' with it's ASCII code in path
 	//var filetype = req.files[0].mimetype;  // This will give mimetype of file
 
 	// res.setHeader( 'content-type', 'application/json' );
@@ -106,10 +180,25 @@ app.post('/api/upload', upload.any(), function (req, res) {
     description: description,
     uploaded_by: req.user.id,
     category: category,
-    filepath: filepath
+    filepath: req.files[0].location
   }).then(function(dbPost) {
     res.json({success : "Updated Successfully", status : 200})
   })
+})
+
+app.get("/search/:query", function(req, res) {
+  var searchQuery = decodeURI(req.params.query)
+  db.Pin.findAll({
+    where: {
+      category: searchQuery
+    }
+  }).then(function(result){
+    var hbsObject = {
+      pins: result
+    }
+    res.render("search-results", hbsObject)
+  })
+
 })
 
 app.get('/auth/google',
@@ -124,9 +213,26 @@ app.get('/auth/google/callback',
   passport.authenticate('google', { failureRedirect: '/login' }),
   function(req, res) {
 
-    res.redirect('/');
-
+    db.User.findOrCreate({
+      where: {  
+        user_id: req.user.id
+        }
+    }).then(function(result){
+      console.log(result)
+      res.redirect('/');
+    })
+   
   });
+
+app.get('/logout', function(req, res){
+  req.logout();
+  res.redirect('/');
+});
+
+app.get('/api/user_data', function(req, res) {
+  
+  res.send(req.user)
+});
 
 };
 

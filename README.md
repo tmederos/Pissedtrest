@@ -1,5 +1,5 @@
 # Pissedtrest
-![logo](https://github.com/grstoltz/pissedtrest/blob/master/public/images/readme-logo.jpg)
+![logo](https://github.com/grstoltz/pissedtrest/blob/master/public/images/logoReadme.jpg)
 
 ---
 # Overview

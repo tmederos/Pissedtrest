@@ -169,7 +169,7 @@ var getCategories = function(){
 var renderCategories = function(result){
   $('#catContainer').empty();
   result.forEach(function(element){
-    var col = $('<div class="col-lg-2 col-s-3 mt-1 text-center">');
+    var col = $('<div class="col-lg-2 col-sm-6 mt-2 text-center">');
     col.html('<button type="button" class="btn btn-circle btn-outline btn-dark categoryBtn">' + element.category + '</button>');
     $('#catContainer').append(col)
   })

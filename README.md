@@ -1,7 +1,7 @@
 # Pissedtrest
 :rage::rage::rage::rage::rage::rage::rage::rage::rage::rage::rage::rage::rage::rage::rage::rage::rage::rage::rage::rage::rage::rage::rage::rage::rage::rage::rage::rage::rage::rage::rage::rage::rage::rage:
 
-https://github.com/grstoltz/pissedtrest/tree/master/public/images/logo.jpg
+https://github.com/grstoltz/pissedtrest/blob/master/public/images/logo.jpg
 
 ---
 # Overview
@@ -13,7 +13,7 @@ Check out the app running on heroku here: https://pissedtrest.herokuapp.com/
 
 ---
 # Screenshot
-![Screenshot](https://github.com/grstoltz/pissedtrest/tree/master/public/images/screen-shot.png)
+![Screenshot](https://github.com/grstoltz/pissedtrest/blob/master/public/images/screen-shot.jpg)
 
 ---
 # Design Team

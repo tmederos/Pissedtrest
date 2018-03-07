@@ -38,7 +38,7 @@ $("#searchBtn").on("click", function(event){
 $(".boardBtn").on("click", function(){
   var category = encodeURI($(this).attr("id"))
   var path = window.location.pathname
-  window.location.href = "/" + category
+  window.location.href = path + "/" + category
 })
 
 //Category button click handler
@@ -169,8 +169,8 @@ var getCategories = function(){
 var renderCategories = function(result){
   $('#catContainer').empty();
   result.forEach(function(element){
-    var col = $('<div class="col-sm-2 text-center">');
-    col.html('<button type="button" class="btn btn-primary categoryBtn">' + element.category + '</button>');
+    var col = $('<div class="col-lg-2 col-s-3 mt-1 text-center">');
+    col.html('<button type="button" class="btn btn-circle btn-outline btn-dark categoryBtn">' + element.category + '</button>');
     $('#catContainer').append(col)
   })
 }

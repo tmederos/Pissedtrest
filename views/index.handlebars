@@ -1,26 +1,36 @@
 {{log this}}
 <div class="container">
-  <div id="catContainer" class="row align-items-center justify-content-center border mt-5 mb-5 p-4">
-    <div class="col text-center">
-      <button type="button" class="btn btn-circle btn-outline btn-dark  categoryBtn">Cat 1</button>
+  <div class="row border mt-5 mb-5 p-4">
+    <div class="col-12">
+      <h5 class="text-center">Popular Topics</h5>
     </div>
-    <div class="col text-center">
-      <button type="button" class="btn btn-circle btn-outline btn-dark  categoryBtn">Cat 2</button>
-    </div>
-    <div class="col text-center">
-      <button type="button" class="btn btn-circle btn-outline btn-dark  categoryBtn">Cat 3</button>
-    </div>
-    <div class="col text-center">
-      <button type="button" class="btn btn-circle btn-outline btn-dark  categoryBtn">Cat 4</button>
-    </div>
-    <div class="col text-center">
-      <button type="button" class="btn btn-circle btn-outline btn-dark  categoryBtn">Cat 5</button>
-    </div>
-    <div class="col text-center">
-      <button type="button" class="btn btn-circle btn-outline btn-dark  categoryBtn">Cat 6</button>
+    <div class="row" id="catContainer">
+      <div class="col text-center">
+        <button type="button" class="btn btn-circle btn-outline btn-dark  categoryBtn"></button>
+      </div>
+      <div class="col text-center">
+        <button type="button" class="btn btn-circle btn-outline btn-dark  categoryBtn"></button>
+      </div>
+      <div class="col text-center">
+        <button type="button" class="btn btn-circle btn-outline btn-dark  categoryBtn"></button>
+      </div>
+      <div class="col text-center">
+        <button type="button" class="btn btn-circle btn-outline btn-dark  categoryBtn"></button>
+      </div>
+      <div class="col text-center">
+        <button type="button" class="btn btn-circle btn-outline btn-dark  categoryBtn"></button>
+      </div>
+      <div class="col text-center">
+        <button type="button" class="btn btn-circle btn-outline btn-dark  categoryBtn"></button>
+      </div>
     </div>
   </div>
 
+  <div class="row">
+    <div class="col-12">
+      <h3 class="text-center">Recently Uploaded</h3>
+    </div>
+  </div>
 
   <div class="row">
     <div class="grid grid-container">
@@ -28,12 +38,6 @@
       {{#each pins}} {{> pins/pins-partial}} {{/each}}
     </div>
   </div>
-{{!--
-  <div class="row">
- {{#each pins}}
-    {{> pins/pins-partial}}
-  {{/each}}
-  </div> --}}
 </div>
 
 <!-- Footer-->
@@ -45,7 +49,7 @@
           <aside class="widget widget_text">
             <div class="textwidget">
               <p>
-                <img src="images/logoFooter.png" width="125" alt="logo">
+                <img src="/images/logoFooter.png" width="125" alt="logo">
               </p>
               <p>We are a team of bootcamp students working on this project like it's our full time job. Any amount would help
                 support and continue development on this project and is greatly appreciated.

@@ -67,7 +67,7 @@ app.get("/api/categories/top", function(req, res){
   db.Pin.findAll({
     attributes: ['category', [db.sequelize.fn('COUNT', 'category'), 'count']],
     group: ['category'],
-    limit: 5,
+    limit: 6,
     order: [
       [db.sequelize.literal('count'), 'DESC']
     ]

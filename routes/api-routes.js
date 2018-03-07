@@ -37,7 +37,12 @@ var Op = models.Op
 module.exports = function(app) {
 
 app.get("/", function(req, res){
-  db.Pin.findAll({}).then(function(result){
+  db.Pin.findAll({
+    limit: 20,
+    order:[
+      ['id', 'DESC']
+    ]
+  }).then(function(result){
     var hbsObject = {
       pins: result
     }
@@ -58,6 +63,19 @@ app.get("/api/pins/", function(req, res){
   })
 })
 
+app.get("/api/categories/top", function(req, res){
+  db.Pin.findAll({
+    attributes: ['category', [db.sequelize.fn('COUNT', 'category'), 'count']],
+    group: ['category'],
+    limit: 5,
+    order: [
+      [db.sequelize.literal('count'), 'DESC']
+    ]
+  }).then(function(result){
+    res.json(result)
+  })
+})
+
 app.get("/api/pins/:category", function(req, res){
   // var hbsObject = {
   //   boards: result
@@ -71,7 +89,7 @@ app.get("/api/pins/:category", function(req, res){
   })
 })
 
-app.get("/api/boards", function(req, res){
+app.get("/api/user/boards", function(req, res){
   db.Board.findAll({
     attributes: ['category'],
     where: {
@@ -112,12 +130,10 @@ app.get("/boards/:userid/:category", function (req, res){
       user_id: req.params.userid
     }
   }).then(function(result){
-    console.log(result)
     idArray = []
     result.forEach(function(item){
       idArray.push(item.dataValues.pin_id)
     })
-    //console.log(idArray)
     db.Pin.findAll({
       where: {
         id: {
@@ -134,8 +150,8 @@ app.get("/boards/:userid/:category", function (req, res){
   })
 });
 
+
 app.post("/api/boards", function (req, res){
-  //Update the user to add this to their board
   db.Board.create({
     category: req.body.category,
     user_id: req.user.id,
@@ -159,21 +175,9 @@ app.post("/api/board/:pinid", function (req,res){
 
 app.post('/api/upload', upload.any(), function (req, res) {
 
-  console.log(req)
-
   var title = req.body.title
   var description = req.body.description
   var category = req.body.category
-
-  console.log("Title "+ title)
-
-	//var filename = req.files[0].originalname;  // This will give renamed file name
-  // var filepath = req.files[0].path;// This will give file path from current location
-  // filepath = filepath.split("public/").pop() //Removes the "public/" path from the stored Image location
-  // filepath = filepath.replace(/\\/g,"&#92;"); // This will replace 'backslash' with it's ASCII code in path
-	//var filetype = req.files[0].mimetype;  // This will give mimetype of file
-
-	// res.setHeader( 'content-type', 'application/json' );
 
   db.Pin.create({
     title: title,

@@ -2,10 +2,16 @@
     margin-left: 25px;
 } */
 
+.grid {
+  margin: 0 auto;
+}
+
+/*
 .grid-container {
-  background-color: grey;
+  background-color: grey; 
   width: 100%;
 }
+*/
 
 .grid-item {
   margin: 1%;
@@ -26,10 +32,10 @@
   margin: auto;
   overflow: auto;
   position: relative;
-  -webkit-animation-duration: 3s;
+  /* -webkit-animation-duration: 3s;
   -webkit-animation-direction: 2s; 
   -webkit-transition: width 2s;
-  transition: width 2s;
+  transition: width 2s; */
 }
 
 .card-text {
@@ -40,9 +46,9 @@
 .card-text:hover {
   opacity: 100;
 }
-.grid-item img:hover {
+/* .grid-item img:hover {
   width: 80%;
-}
+} */
 
 .grid-item:hover .card-text {
     opacity: 100;
@@ -67,6 +73,6 @@ body {
 } */
 
 .gutter-sizer {
-  width: 5%;
+  width: 10%;
 }
 

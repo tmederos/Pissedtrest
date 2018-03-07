@@ -1,6 +1,6 @@
 
-INSERT INTO users (user_id) VALUES ( "t18723409322");
-INSERT INTO users (user_id) VALUES ( "g344500999344");
+INSERT INTO users (google_id, username) VALUES ( "t18723409322", "tmederos");
+INSERT INTO users (google_id, username) VALUES ( "g344500999344", "gstolz");
 
 INSERT INTO pins (title, description, category, filepath, uploaded_by )
 VALUES ("toilet paper", "This is the wrong way", "wrong", "/pubic/images/sample/toilet_paper.jpg", "t18723409322" );

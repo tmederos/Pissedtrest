@@ -1,38 +1,8 @@
 $(document).ready(function() {
 var loggedIn;
 
-var loginCheck = function(){
-  var userid;
-  $.ajax({
-    type: "GET",
-    url: "/api/user_data"
-  }).then(function(result){
-    userid = result.id
-    loginToggle(userid)
-    boardToggle(userid)
-    if (userid){
-      loggedIn = true
-    } else {
-      loggedIn = false
-    }
-  })
-}
-
-loginCheck();
-
-var loginToggle = function(state){
-  if (state){
-    $("#nav-login").text("Logout").attr("href", "/logout")
-  } else {
-    $("#nav-login").text("Login")
-  }
-}
-
-var boardToggle = function(state){
-  if (!state){
-    $("#nav-board").attr("href", "#")
-  }
-}
+//Click Handlers//
+//-----------------------------------//
 
 //Upload button click handler
 $("#nav-upload").on("click", function(){
@@ -43,6 +13,7 @@ $("#nav-upload").on("click", function(){
   }
 })
 
+//My Boards click handler
 $("#nav-board").on("click", function(){
 if (!loggedIn){
   $('#loginModal').modal('show')
@@ -63,6 +34,7 @@ $("#searchBtn").on("click", function(event){
 
 })
 
+//Board button click handler
 $(".boardBtn").on("click", function(){
   var category = encodeURI($(this).attr("id"))
   var path = window.location.pathname
@@ -75,8 +47,6 @@ $(".categoryBtn").on("click", function(event){
   var category = $(this).text()
   categorySearch(category);
 })
-
-
 
 //Pin click handler
 $(".pinBtn").on("click", function (event){
@@ -93,13 +63,46 @@ if (loggedIn){
   }
 });
 
+//Functions//
+//-----------------------------------//
+
+var boardToggle = function(state){
+  if (!state){
+    $("#nav-board").attr("href", "#")
+  }
+}
+
+var loginToggle = function(state){
+  if (state){
+    $("#nav-login").text("Logout").attr("href", "/logout")
+  } else {
+    $("#nav-login").text("Login")
+  }
+}
+
+var loginCheck = function(){
+  var userid;
+  $.ajax({
+    type: "GET",
+    url: "/api/user_data"
+  }).then(function(result){
+    userid = result.id
+    loginToggle(userid)
+    boardToggle(userid)
+    if (userid){
+      loggedIn = true
+    } else {
+      loggedIn = false
+    }
+  })
+}
+
 var renderCategories = function(){
   $.ajax({
     type: "GET",
-    url: "/api/boards"
+    url: "/api/user/boards"
   }).then(function(results){
-    console.log("Board results" + results)
-    results.forEach(function(element){
+      results.forEach(function(element){
       var option = $("<option>").text(element.category)
       $("#userCategory").append(option)
     })
@@ -109,17 +112,12 @@ var renderCategories = function(){
 var boardSubmit = function(id){
   var category;
   
-    console.log($('#newBoardInput').val())
-
     if($('#newBoardInput').val()){
       category = $('#newBoardInput').val()
     }
     else {
       category = $("#userCategory").find(":selected").text();
     }
-
-    console.log("Id " + id)
-    console.log("Category " + category)
   
     var postObj = {
       category: category,
@@ -145,9 +143,6 @@ var boardSubmit = function(id){
     })
 }
 
-//Functions//
-//-----------------------------------//
-
 var getBoards = function(userid){
   var url
   if (userid){
@@ -159,8 +154,24 @@ var getBoards = function(userid){
   $.ajax({
     type: "GET",
     url: url
+  })
+}
+
+var getCategories = function(){
+  $.ajax({
+    type: "GET",
+    url: "/api/categories/top"
   }).then(function(result){
-    console.log(result)
+    renderCategories(result)
+  })
+}
+
+var renderCategories = function(result){
+  $('#catContainer').empty();
+  result.forEach(function(element){
+    var col = $('<div class="col text-center">');
+    col.html('<button type="button" class="btn btn-primary categoryBtn">' + element.category + '</button>');
+    $('#catContainer').append(col)
   })
 }
 
@@ -172,11 +183,6 @@ var uploadFunction = function () {
   
   var form = new FormData();
 
-  console.log(title)
-  console.log(description)
-  console.log(category)
-  console.log(file)
-
   form.append("title", title);
   form.append("description", description);
   form.append("category", category);
@@ -184,6 +190,7 @@ var uploadFunction = function () {
 
 
   $("#btnSubmit").prop("disabled", true);
+
   $.ajax({
       type: "POST",
       enctype: 'multipart/form-data',
@@ -196,13 +203,13 @@ var uploadFunction = function () {
       success: function(result) {
         if(result.status == 200){
           $('#uploadModal').modal('hide')
-          $("#btnSubmit").prop("disabled", false)
+          
         }
         else{
             console.log("Error")
         }
     }
-  });
+  }).then(resetUploadForm());
 }
 
 var categorySearch = function(category){
@@ -210,12 +217,18 @@ var categorySearch = function(category){
   $.ajax({
     type: "GET",
     url: url
-  }).then(function(result){
-    console.log(result)
-  });
+  })
 }
-    
 
+var resetUploadForm = function(){
+  $("#btnSubmit").prop("disabled", false)
+  $("#fileTitle").val('');
+  $("#fileDesc").val('');
+  $("#fileCat").val('');
+  $('#inputFile').val('');
+}
 
+loginCheck();
+getCategories();
 
 });

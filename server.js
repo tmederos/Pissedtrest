@@ -15,7 +15,8 @@ var cookieParser = require('cookie-parser')
 var PORT = process.env.PORT || 3000;
 
 const app = express();
-app.use(cookieParser())
+
+app.use(cookieParser());
 
 // Serve static content for the app from the "public" directory in the application directory.
 app.use(express.static(path.join(__dirname, "public")));
@@ -75,6 +76,7 @@ require("./routes/html-routes.js")(app);
 
 // Syncing our sequelize models and then starting our Express app
 // =============================================================
+
 db.sequelize.sync({ force: false }).then(function() {
   app.listen(PORT, function() {
     console.log("Sequelize listening on PORT " + PORT);

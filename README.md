@@ -44,6 +44,8 @@ Technologies used
 * nightmare npm Package - https://www.npmjs.com/package/nightmare
 * chai npm Package - https://www.npmjs.com/package/chai
 * multer npm Package - https://www.npmjs.com/package/multer
+* Amazon Web Services - https://aws.amazon.com/
+* Google+ API - https://developers.google.com/+/web/api/rest/
 
 Built With
 * Sublime Text - Text Editor

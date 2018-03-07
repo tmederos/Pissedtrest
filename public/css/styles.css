@@ -10,15 +10,24 @@
 
 .grid-item {
   margin-bottom: 1%;
+  display: inline-block;
   /* overflow: auto; */
   padding: 1%;
   position: relative;
   
 }
+
+#pinButt {
+  z-index: 1;
+  position: absolute;top:0;right:0;
+  opacity: 0;
+}
+
 .grid-sizer {
   width: 5%;
   height: 5%;
 }
+
 
 .grid-item img {
   width: 100%;
@@ -54,6 +63,12 @@
 .grid-item:hover .card-title {
   opacity: 100;
   color: #fff;
+}
+
+.grid-item:hover #pinButt {
+  opacity: 1;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
 }
 
 .grid-item:hover {

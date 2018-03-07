@@ -19,7 +19,7 @@ Check out the app running on heroku here: https://pissedtrest.herokuapp.com/
 # Design Team
 - Alan Drake - Masonry Grid Layout, Handlebars.js
 - Trish Mederos – Sequelize, Mocha/Chai and Nightmare testing
-- Grant Stolz – Team Lead , Google o-auth, Amazon S3, routing
+- Grant Stolz – Team Lead , back-end development
 - Abby Thoresen – Wireframe, Bootstrap, Logo design
 
 
@@ -80,7 +80,7 @@ In the terminal type:
 
 The test file test.pin.js will drop and recreate the tables in the database_test database. It will insert data into the user, pin, and board tables and query the inserted data from the tables.
 
-### Step 4
+### Step 5
 To run the browser test you run the file browser.test.js by typing the following command.
 > npm run test:browser
 

@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
     <div class="col-12">
-      <h3 class="text-center">Your Boards</h3>
+      <h2 class="text-center mt-5">Your Boards</h2>
     </div>
   </div>
 
@@ -141,8 +141,8 @@
         <div class="modal-body">
           <select id="userCategory">
             <option disabled selected value> -- Select an existing board -- </option>
-            
           </select>
+          <br>
           <p>Or create a new board</p>
           <form>
             <div class="form-group">
@@ -171,7 +171,7 @@
         <div class="modal-body">
           <p>You must be logged in to access that feature!</p>
         <div class="modal-footer">
-          <button type="button" class="btn btn-primary" href="/auth/google">Log Me In</button>
+          <button type="button" class="btn btn-primary" onclick="window.location='/auth/google';">Log Me In</button>
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
       </div>
       </div>

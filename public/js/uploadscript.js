@@ -162,11 +162,11 @@ var getCategories = function(){
     type: "GET",
     url: "/api/categories/top"
   }).then(function(result){
-    renderCategories(result)
+    renderTopCategories(result)
   })
 }
 
-var renderCategories = function(result){
+var renderTopCategories = function(result){
   $('#catContainer').empty();
   result.forEach(function(element){
     var col = $('<div class="col-lg-2 col-sm-6 mt-2 text-center">');

@@ -169,7 +169,7 @@ var getCategories = function(){
 var renderCategories = function(result){
   $('#catContainer').empty();
   result.forEach(function(element){
-    var col = $('<div class="col text-center">');
+    var col = $('<div class="col-sm-2 text-center">');
     col.html('<button type="button" class="btn btn-primary categoryBtn">' + element.category + '</button>');
     $('#catContainer').append(col)
   })
@@ -232,7 +232,7 @@ var initializeMasonry = function(){
       // options
       itemSelector: ".grid-item",
       fitWidth: true,
-      gutter: 5,
+      gutter: 10,
       transitionDuration: "0.8s",
       //percentPosition: true,
     });

@@ -26,12 +26,14 @@ var db = require("../models");
 // =============================================================
 module.exports = function(app) {
 
-app.get("/", function(req, res){
+app.get("/api/users", function(req, res){
 
-  db.Pin.findAll({}).then(function(result){
+  db.User.findAll({}).then(function(result){
+    res.json(result);
     console.log(result)
   })
 })
+
 
 app.get("/api/pins/:category", function(req, res){
 
@@ -41,6 +43,7 @@ app.get("/api/pins/:category", function(req, res){
     }
   }).then(function(result){
     console.log(result)
+    res.json(result)
   })
 })
 

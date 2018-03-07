@@ -4,7 +4,7 @@
 ---
 # Overview
 
-Pissedtrest is a Pintrest clone...Instead of pinning things you like, you pin things you HATE. For all those times when people hang toilet paper wrong, take up two parking spaces, or make products that don't work properly... Here is your place to vent about it.
+Pissedtrest is a Pinterest clone...Instead of pinning things you like, you pin things you HATE. For all those times when people hang toilet paper wrong, take up two parking spaces, or make products that don't work properly... Here is your place to vent about it.
 
 ---
 Check out the app running on heroku here: https://pissedtrest.herokuapp.com/

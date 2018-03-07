@@ -83,7 +83,7 @@ app.get("/api/boards", function(req, res){
       boards: result
     }
     console.log(result)
-    res.send(result)
+    res.json(result)
   })
 })
 

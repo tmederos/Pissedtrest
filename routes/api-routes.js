@@ -67,7 +67,7 @@ app.get("/api/categories/top", function(req, res){
   db.Pin.findAll({
     attributes: ['category', [db.sequelize.fn('COUNT', 'category'), 'count']],
     group: ['category'],
-    limit: 5,
+    limit: 6,
     order: [
       [db.sequelize.literal('count'), 'DESC']
     ]
@@ -76,16 +76,16 @@ app.get("/api/categories/top", function(req, res){
   })
 })
 
-app.get("/api/pins/:category", function(req, res){
-  // var hbsObject = {
-  //   boards: result
-  // }
+app.get("/pins/:category", function(req, res){
   db.Pin.findAll({
     where: {
       category: req.params.category
     }
   }).then(function(result){
-    res.json(result)
+    var hbsObject = {
+      pins: result
+    }
+    res.render("index", hbsObject)
   })
 })
 

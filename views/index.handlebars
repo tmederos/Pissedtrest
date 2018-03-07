@@ -1,39 +1,121 @@
 {{log this}}
 <div class="container">
-  <div id="catContainer" class="row align-items-center justify-content-center border mt-5 mb-5 p-4">
-    <div class="col text-center">
-      <button type="button" class="btn btn-primary categoryBtn">Cat 1</button>
+  <div class="row border mt-5 mb-5 p-4">
+    <div class="col-12">
+      <h5 class="text-center">Popular Topics</h5>
     </div>
-    <div class="col text-center">
-      <button type="button" class="btn btn-primary categoryBtn">Cat 2</button>
-    </div>
-    <div class="col text-center">
-      <button type="button" class="btn btn-primary categoryBtn">Cat 3</button>
-    </div>
-    <div class="col text-center">
-      <button type="button" class="btn btn-primary categoryBtn">Cat 4</button>
-    </div>
-    <div class="col text-center">
-      <button type="button" class="btn btn-primary categoryBtn">Cat 5</button>
-    </div>
-    <div class="col text-center">
-      <button type="button" class="btn btn-primary categoryBtn">Cat 6</button>
+    <div class="row" id="catContainer">
+      <div class="col text-center">
+        <button type="button" class="btn btn-circle btn-outline btn-dark  categoryBtn"></button>
+      </div>
+      <div class="col text-center">
+        <button type="button" class="btn btn-circle btn-outline btn-dark  categoryBtn"></button>
+      </div>
+      <div class="col text-center">
+        <button type="button" class="btn btn-circle btn-outline btn-dark  categoryBtn"></button>
+      </div>
+      <div class="col text-center">
+        <button type="button" class="btn btn-circle btn-outline btn-dark  categoryBtn"></button>
+      </div>
+      <div class="col text-center">
+        <button type="button" class="btn btn-circle btn-outline btn-dark  categoryBtn"></button>
+      </div>
+      <div class="col text-center">
+        <button type="button" class="btn btn-circle btn-outline btn-dark  categoryBtn"></button>
+      </div>
     </div>
   </div>
 
-  
+  <div class="row">
+    <div class="col-12">
+      <h3 class="text-center">Recently Uploaded</h3>
+    </div>
+  </div>
+
   <div class="row">
     <div class="grid grid-container">
+      <div class="grid-sizer"></div>
       {{#each pins}} {{> pins/pins-partial}} {{/each}}
     </div>
   </div>
-{{!-- 
-  <div class="row">
- {{#each pins}} 
-    {{> pins/pins-partial}} 
-  {{/each}}
-  </div> --}}
 </div>
+
+<!-- Footer-->
+  <footer class="footer mt-5">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 col-lg-4">
+          <!-- Text widget-->
+          <aside class="widget widget_text">
+            <div class="textwidget">
+              <p>
+                <img src="/images/logoFooter.png" width="125" alt="logo">
+              </p>
+              <p>We are a team of bootcamp students working on this project like it's our full time job. Any amount would help
+                support and continue development on this project and is greatly appreciated.
+            </div>
+          </aside>
+        </div>
+
+        <div class="col-md-6 col-lg-4">
+          <!-- Recent entries widget-->
+          <aside class="widget widget_recent_entries">
+            <div class="widget-title">
+              <h5>Connect With Us</h5>
+            </div>
+            <ul>
+             <li>
+                <a href="https://github.com/Bkagd">Alan Drake</a>
+                <span class="post-date"></span>
+              </li>
+              <li>
+                <a href="https://github.com/tmederos">Trish Mederos</a>
+                <span class="post-date"></span>
+              </li>
+              <li>
+                <a href="https://github.com/grstoltz">Grant Stolz</a>
+                <span class="post-date"></span>
+              </li>
+              <li>
+                <a href="https://github.com/akt12345">Abby Thoresen</a>
+                <span class="post-date"></span>
+              </li>
+
+            </ul>
+          </aside>
+        </div>
+
+        <div class="col-md-6 col-lg-4">
+          <!-- Tags widget-->
+          <aside class="widget widget_tag_cloud">
+            <div class="widget-title">
+              <h5>Technologies Used</h5>
+            </div>
+            <div class="tagcloud">
+              <a href="https://nodejs.org/en/">Node.js</a>
+              <a href="https://www.mysql.com/">MySQL</a>
+              <a href="http://handlebarsjs.com/">Handlebars</a>
+              <a href="https://expressjs.com/">Express.js</a>
+              <a href="http://www.passportjs.org/">Passport.js</a>
+              <a href="https://aws.amazon.com/">Amazon Web Services (AWS)</a>
+              <a href="https://developers.google.com/+/web/api/rest/">Google+ API</a>
+              <a href="https://v4-alpha.getbootstrap.com/">Bootstrap 4</a>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </div>
+    <div class="footer-copyright">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="text-center">
+              <span class="copyright">© 2018 Pissedtrest, All Rights Reserved.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
 
  <!-- Modal -->
   <div class="modal fade" id="uploadModal">
@@ -82,7 +164,7 @@
         <div class="modal-body">
           <select id="userCategory">
             <option disabled selected value> -- Select an existing board -- </option>
-            
+
           </select>
           <p>Or create a new board</p>
           <form>

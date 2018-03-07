@@ -42,9 +42,9 @@ $(".boardBtn").on("click", function(){
 })
 
 //Category button click handler
-$(".categoryBtn").on("click", function(event){
-  event.preventDefault();
-  var category = $(this).text()
+$("#catContainer").on("click", ".categoryBtn", function(){
+  console.log("clicked")
+  var category = encodeURI($(this).text())
   categorySearch(category);
 })
 
@@ -169,8 +169,8 @@ var getCategories = function(){
 var renderCategories = function(result){
   $('#catContainer').empty();
   result.forEach(function(element){
-    var col = $('<div class="col text-center">');
-    col.html('<button type="button" class="btn btn-primary categoryBtn">' + element.category + '</button>');
+    var col = $('<div class="col-lg-2 col-s-3 mt-1 text-center">');
+    col.html('<button type="button" class="btn btn-circle btn-outline btn-dark categoryBtn">' + element.category + '</button>');
     $('#catContainer').append(col)
   })
 }
@@ -213,11 +213,8 @@ var uploadFunction = function () {
 }
 
 var categorySearch = function(category){
-  var url = "api/pins/" + category
-  $.ajax({
-    type: "GET",
-    url: url
-  })
+  var url = "pins/" + category
+  window.location.href = "/" + url
 }
 
 var resetUploadForm = function(){
@@ -228,7 +225,22 @@ var resetUploadForm = function(){
   $('#inputFile').val('');
 }
 
+var initializeMasonry = function(){
+  var $grid = $(".grid").imagesLoaded(function () {
+    // init Masonry after all images have loaded
+    $grid.masonry({
+      // options
+      itemSelector: ".grid-item",
+      fitWidth: true,
+      gutter: 10,
+      transitionDuration: "0.8s",
+      //percentPosition: true,
+    });
+  });
+}
+
 loginCheck();
 getCategories();
+initializeMasonry();
 
 });

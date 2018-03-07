@@ -219,7 +219,7 @@ app.get('/auth/google/callback',
 
     db.User.findOrCreate({
       where: {  
-        user_id: req.user.id
+        google_id: req.user.id
         }
     }).then(function(result){
       console.log(result)

@@ -2,6 +2,15 @@
     margin-left: 25px;
 } */
 
+#category-search{
+  width: 500px;
+}
+
+
+#catContainer {
+  margin: 0 auto;
+}
+
 .grid {
   margin: 0 auto;
 }
@@ -94,4 +103,11 @@ background-color: #1b1d1f!important;
 
 #searchBtn{
 margin-right: 20px;
+}
+
+@media (min-width: 992px) and (max-width: 1199px) { 
+  #category-search{
+    width: 300px;
+  }
+
 }

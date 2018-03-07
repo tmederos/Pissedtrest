@@ -38,13 +38,13 @@ $("#searchBtn").on("click", function(event){
 $(".boardBtn").on("click", function(){
   var category = encodeURI($(this).attr("id"))
   var path = window.location.pathname
-  window.location.href = path + "/" + category
+  window.location.href = "/" + category
 })
 
 //Category button click handler
-$(".categoryBtn").on("click", function(event){
-  event.preventDefault();
-  var category = $(this).text()
+$("#catContainer").on("click", ".categoryBtn", function(){
+  console.log("clicked")
+  var category = encodeURI($(this).text())
   categorySearch(category);
 })
 
@@ -213,11 +213,8 @@ var uploadFunction = function () {
 }
 
 var categorySearch = function(category){
-  var url = "api/pins/" + category
-  $.ajax({
-    type: "GET",
-    url: url
-  })
+  var url = "pins/" + category
+  window.location.href = "/" + url
 }
 
 var resetUploadForm = function(){
@@ -234,16 +231,16 @@ var initializeMasonry = function(){
     $grid.masonry({
       // options
       itemSelector: ".grid-item",
-      columnWidth: ".grid-sizer",
-      gutter: 1,
+      fitWidth: true,
+      gutter: 5,
       transitionDuration: "0.8s",
-      percentPosition: true,
+      //percentPosition: true,
     });
   });
 }
 
 loginCheck();
 getCategories();
-//initializeMasonry();
+initializeMasonry();
 
 });

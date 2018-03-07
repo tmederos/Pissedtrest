@@ -76,16 +76,16 @@ app.get("/api/categories/top", function(req, res){
   })
 })
 
-app.get("/api/pins/:category", function(req, res){
-  // var hbsObject = {
-  //   boards: result
-  // }
+app.get("/pins/:category", function(req, res){
   db.Pin.findAll({
     where: {
       category: req.params.category
     }
   }).then(function(result){
-    res.json(result)
+    var hbsObject = {
+      pins: result
+    }
+    res.render("index", hbsObject)
   })
 })
 
@@ -219,7 +219,7 @@ app.get('/auth/google/callback',
 
     db.User.findOrCreate({
       where: {  
-        google_id: req.user.id
+        user_id: req.user.id
         }
     }).then(function(result){
       console.log(result)

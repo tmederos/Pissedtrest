@@ -4,15 +4,14 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.INTEGER,
       primaryKey: true,
       autoIncrement: true
-    },
-      google_id: {
+      },
+      user_id: {
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
         len: [1]
-      }
-    },
-    username: DataTypes.STRING
+        }
+      },
     }, {
         timestamps: false
     });

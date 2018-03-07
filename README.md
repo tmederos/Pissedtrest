@@ -15,10 +15,10 @@ Check out the app running on heroku here: https://pissedtrest.herokuapp.com/
 
 ---
 # Design Team
-- Alan Drake - Masonry Grid Layout, Handlebars.js
-- Trish Mederos – Sequelize, Mocha/Chai and Nightmare testing
-- Grant Stolz – Team Lead , back-end development
-- Abby Thoresen – Wireframe, Bootstrap, Logo design
+- Alan Drake - Front-end
+- Trish Mederos – Back-end and testing
+- Grant Stolz – Team Lead , Back-end development
+- Abby Thoresen – Front-end, Logo design
 
 
 ---

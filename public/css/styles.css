@@ -19,7 +19,7 @@
   padding: 1px;
   float: left;
   position: relative;
-  
+
 }
 .grid-sizer {
   width: 5%;
@@ -65,7 +65,7 @@
   -webkit-transition: 1s;
   transition: 1s;
 }
-/* 
+/*
 
 body {
   margin: 0;
@@ -76,3 +76,22 @@ body {
   width: 10%;
 }
 
+.navbar{
+background-color: #1b1d1f!important;
+}
+
+.bg-secondary {
+    background-color: #1b1d1f!important;
+}
+
+.a{
+  color: #ffffff;
+}
+
+.nav-link{
+  color: #ffffff;
+}
+
+#searchBtn{
+margin-right: 20px;
+}

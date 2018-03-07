@@ -60,3 +60,5 @@ typings/
 
 # config file
 config/config.json
+
+.DS_Store

@@ -44,6 +44,7 @@ app.get("/", function(req, res){
     ]
   }).then(function(result){
     var hbsObject = {
+      homepage: true,
       pins: result
     }
    res.render("index", hbsObject)
@@ -83,6 +84,7 @@ app.get("/pins/:category", function(req, res){
     }
   }).then(function(result){
     var hbsObject = {
+      homepage: false,
       pins: result
     }
     res.render("index", hbsObject)

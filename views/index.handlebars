@@ -1,18 +1,17 @@
-{{log this}}
 <div class="container">
   <div class="row border mt-5 mb-5 p-4">
     <div class="col-12">
       <h5 class="text-center">Popular Topics</h5>
     </div>
-    <div class="row" id="catContainer">
+    <div class="row text-center" id="catContainer">
       <div class="col text-center">
-        <button type="button" class="btn btn-circle btn-outline btn-dark  categoryBtn"></button>
+        <button type="button" class="btn btn-circle btn-outline btn-dark categoryBtn"></button>
       </div>
       <div class="col text-center">
-        <button type="button" class="btn btn-circle btn-outline btn-dark  categoryBtn"></button>
+        <button type="button" class="btn btn-circle btn-outline btn-dark categoryBtn"></button>
       </div>
       <div class="col text-center">
-        <button type="button" class="btn btn-circle btn-outline btn-dark  categoryBtn"></button>
+        <button type="button" class="btn btn-circle btn-outline btn-dark categoryBtn"></button>
       </div>
       <div class="col text-center">
         <button type="button" class="btn btn-circle btn-outline btn-dark  categoryBtn"></button>
@@ -25,12 +24,13 @@
       </div>
     </div>
   </div>
-
+  {{#if homepage}}
   <div class="row">
     <div class="col-12">
       <h3 class="text-center">Recently Uploaded</h3>
     </div>
   </div>
+  {{/if}}
 
   <div class="row">
     <div class="grid grid-container">
@@ -73,7 +73,7 @@
                 <span class="post-date"></span>
               </li>
               <li>
-                <a href="https://github.com/grstoltz">Grant Stolz</a>
+                <a href="https://github.com/grstoltz">Grant Stoltz</a>
                 <span class="post-date"></span>
               </li>
               <li>

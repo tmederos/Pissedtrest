@@ -1,7 +1,7 @@
 # Pissedtrest
 :rage::rage::rage::rage::rage::rage::rage::rage::rage::rage::rage::rage::rage::rage::rage::rage::rage::rage::rage::rage::rage::rage::rage::rage::rage::rage::rage::rage::rage::rage::rage::rage::rage::rage:
 
-https://github.com/grstoltz/pissedtrest/blob/master/public/images/logo.jpg
+[https://github.com/grstoltz/pissedtrest/blob/master/public/images/logo.jpg]
 
 ---
 # Overview

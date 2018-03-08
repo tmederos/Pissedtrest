@@ -11,7 +11,7 @@
 }
 
 .grid-item {
-  margin: 1%;
+  margin-bottom: 10px;
   overflow: auto;
   padding: 1px;
   float: left;

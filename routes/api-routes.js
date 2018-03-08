@@ -32,6 +32,7 @@ var upload = multer({
 var models = require("../models");
 var db = models.db
 var Op = models.Op
+
 // Routes
 // =============================================================
 module.exports = function(app) {
@@ -102,7 +103,6 @@ app.get("/api/user/boards", function(req, res){
     var hbsObject = {
       boards: result
     }
-    console.log(result)
     res.json(result)
   })
 })
@@ -115,7 +115,6 @@ app.get("/boards/:userid", function(req, res){
     },
     group: ['category']
   }).then(function(result){
-    console.log(result)
     var hbsObject = {
       boards: result
     }
@@ -143,7 +142,6 @@ app.get("/boards/:userid/:category", function (req, res){
         }
       }
     }).then(function(result){
-      console.log(result)
       var hbsObject = {
       pins: result
     }
@@ -216,7 +214,7 @@ app.get('/auth/google',
 //   login page.  Otherwise, the primary route function function will be called,
 //   which, in this example, will redirect the user to the home page.
 app.get('/auth/google/callback',
-  passport.authenticate('google', { failureRedirect: '/login' }),
+  passport.authenticate('google', { failureRedirect: '/' }),
   function(req, res) {
 
     db.User.findOrCreate({

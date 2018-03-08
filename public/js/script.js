@@ -203,7 +203,7 @@ var uploadFunction = function () {
       success: function(result) {
         if(result.status == 200){
           $('#uploadModal').modal('hide')
-          
+          location.reload();
         }
         else{
             console.log("Error")

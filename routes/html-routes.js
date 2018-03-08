@@ -15,20 +15,11 @@ module.exports = function(app) {
   // index route loads view.html
   app.get("/", function(req, res) {
     res.render("index")
-
-  });
-
-  app.get("/callback", function(req, res) {
-    res.sendFile(path.join(__dirname, "../public/success.html"));
   });
 
   app.get("/boards", function(req, res) {
     res.redirect("/boards/" + req.user.id)
   });
 
-  // // blog route loads blog.html
-  // app.get("/blog", function(req, res) {
-  //   res.sendFile(path.join(__dirname, "../public/blog.html"));
-  // });
 
 };

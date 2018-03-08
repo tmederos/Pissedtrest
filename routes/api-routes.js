@@ -100,7 +100,7 @@ app.get("/api/user/boards", function(req, res){
     var hbsObject = {
       boards: result
     }
-    console.log(result)
+    console.log( "In get /api/user/boards ", result);
     res.json(result)
   })
 })
@@ -113,7 +113,7 @@ app.get("/boards/:userid", function(req, res){
     },
     group: ['category']
   }).then(function(result){
-    console.log(result)
+    console.log( "In get /boards/:userid ", result)
     var hbsObject = {
       boards: result
     }
@@ -141,7 +141,7 @@ app.get("/boards/:userid/:category", function (req, res){
         }
       }
     }).then(function(result){
-      console.log(result)
+      console.log( "In get /boards/:userid/:category ", result);
       var hbsObject = {
       pins: result
     }
@@ -168,7 +168,7 @@ app.post("/api/board/:pinid", function (req,res){
     category: req.body.category,
     pin_id: req.params.pinid
   }).then(function(result){
-    console.log(result)
+    console.log("In post /api/board/:pinid ", result);
   });
 
 })
@@ -186,8 +186,9 @@ app.post('/api/upload', upload.any(), function (req, res) {
     category: category,
     filepath: req.files[0].location
   }).then(function(dbPost) {
+    console.log( "created pin");
     res.json({success : "Updated Successfully", status : 200})
-  })
+    })
 })
 
 app.get("/search/:query", function(req, res) {

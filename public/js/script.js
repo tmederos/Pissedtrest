@@ -98,12 +98,14 @@ var loginCheck = function(){
 }
 
 var renderCategories = function(){
+  $("#userCategory").empty();
   $.ajax({
     type: "GET",
     url: "/api/user/boards"
   }).then(function(results){
+    $("#userCategory").append('<option disabled selected value> -- Select an existing board -- </option>')
       results.forEach(function(element){
-      var option = $("<option>").text(element.category)
+      var option = $('<option class="userOption">').text(element.category)
       $("#userCategory").append(option)
     })
   })

@@ -14,6 +14,10 @@ Check out the app running on heroku here: https://pissedtrest.herokuapp.com/
 ![Screenshot](https://github.com/grstoltz/pissedtrest/blob/master/public/images/screen-shot.jpg)
 
 ---
+# File upload
+![GIF](https://github.com/grstoltz/pissedtrest/blob/master/public/images/pissedtrest.gif)
+
+---
 # Design Team
 - Alan Drake - Front-end
 - Trish Mederos – Back-end and testing

@@ -1,16 +1,16 @@
 module.exports = {
  "development": {
    "username": process.env.DEV_DB_USERNAME || "root",
-   "password": null,
-   "port": process.env.DEV_DB_PORT || 3306,
+   "password": "root",
+   "port": process.env.DEV_DB_PORT || 3308,
    "database": "pin_db",
    "host": "127.0.0.1",
    "dialect": "mysql"
  },
  "test": {
    "username": "root",
-   "password": null,
-   "port": 3306,
+   "password": "root",
+   "port": 3308,
    "database": "database_test",
    "host": "127.0.0.1",
    "dialect": "mysql"

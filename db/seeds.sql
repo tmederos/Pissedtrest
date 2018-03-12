@@ -1,22 +1,29 @@
 
-INSERT INTO users (google_id, username) VALUES ( "t18723409322", "tmederos");
-INSERT INTO users (google_id, username) VALUES ( "g344500999344", "gstolz");
+INSERT INTO ql1ii5jyabcaczi6.users (user_id) VALUES ( "108480614932320425425");
+
 
 INSERT INTO pins (title, description, category, filepath, uploaded_by )
-VALUES ("toilet paper", "This is the wrong way", "wrong", "/pubic/images/sample/toilet_paper.jpg", "t18723409322" );
+  VALUES ("Toilet paper", "This is the wrong way", "wrong", "https://pissedtrest-app.s3.us-west-1.amazonaws.com/1520398910936.jpg", "108480614932320425425" );
 INSERT INTO pins (title, description, category, filepath, uploaded_by)
-VALUES ("condiments", "Condiments", "products", "/filepath/images/sample/condiments.jpg", "t18723409322");
+  VALUES ("Condiments", "One of these things is not like the others", "products", "https://pissedtrest-app.s3.us-west-1.amazonaws.com/1520467405712.jpg", "108480614932320425425");
 INSERT INTO pins (title, description, category, filepath, uploaded_by)
-VALUES ("cement", "Footprints", "work", "/pubic/images/sample/cement.jpg", "g344500999344");
+  VALUES ("Cement", "Really?", "On the Job", "https://pissedtrest-app.s3.us-west-1.amazonaws.com/1520467469737.jpg", "108480614932320425425");
 INSERT INTO pins (title, description, category, filepath, uploaded_by)
-VALUES ("wheelchair ramp", "Wheelchair ramp", "one-job", "/pubic/images/sample/wheelchair-ramp.jpg", "g344500999344");
+  VALUES ("Wheelchair ramp", "Wheelchair ramp", "One job", "https://pissedtrest-app.s3.us-west-1.amazonaws.com/1520467541973.jpg", "108480614932320425425");
+INSERT INTO pins (title, description, category, filepath, uploaded_by)
+  VALUES ("Half Eaten", "Just Eat the Whole Thing", "Food Slob", "https://pissedtrest-app.s3.us-west-1.amazonaws.com/1520398771752.jpg", "108480614932320425425");
+INSERT INTO pins (title, description, category, filepath, uploaded_by)
+  VALUES ("Door Handles", "THINGS THAT DON'T MATCH", "One job", "https://pissedtrest-app.s3.us-west-1.amazonaws.com/1520467674485.jpg", "108480614932320425425");
+INSERT INTO pins (title, description, category, filepath, uploaded_by)
+  VALUES ("Shopping Carts", "Shopping Carts", "Lazy People", "https://pissedtrest-app.s3.us-west-1.amazonaws.com/1520467742022.jpg", "108480614932320425425");
+INSERT INTO pins (title, description, category, filepath, uploaded_by)
+  VALUES ("Parking", "Parking space hog", "Parking", "https://pissedtrest-app.s3.us-west-1.amazonaws.com/1520470055729.jpg", "108480614932320425425");
+INSERT INTO pins (title, description, category, filepath, uploaded_by)
+  VALUES ("Bad Signs", "Not Aligned", "Signs", "https://pissedtrest-app.s3.us-west-1.amazonaws.com/1520470247778.jpg", "108480614932320425425");
+INSERT INTO pins (title, description, category, filepath, uploaded_by)
+  VALUES ("Bad Fonts", "Is it Biiiys?", "Signs", "https://pissedtrest-app.s3.us-west-1.amazonaws.com/1520470346524.jpg", "108480614932320425425");
+INSERT INTO pins (title, description, category, filepath, uploaded_by)
+  VALUES ("Fail", "They make TV wall mounts for a reason", "Fail", "https://pissedtrest-app.s3.us-west-1.amazonaws.com/1520474069889.jpg", "108480614932320425425");
+  INSERT INTO pins (title, description, category, filepath, uploaded_by)
+  VALUES ("Muffin", "A One Blueberry Muffin", "products", "https://pissedtrest-app.s3.us-west-1.amazonaws.com/1520474538538.jpg", "108480614932320425425");
 
-
-INSERT INTO pin_db.boards( user_id, pin_id, category )
-VALUES (  "t18723409322", 1, "wrong" );
-INSERT INTO pin_db.boards( user_id, pin_id, category )
-VALUES (  "t18723409322", 2, "products" );
-INSERT INTO pin_db.boards( user_id, pin_id, category )
-VALUES (  "g344500999344", 3, "work" );
-INSERT INTO pin_db.boards( user_id, pin_id, category )
-VALUES (  "g344500999344", 4, "one-job" );

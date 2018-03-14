@@ -15,7 +15,7 @@ Check out the app running on heroku here: https://pissedtrest.herokuapp.com/
 
 ---
 # File upload
-![GIF](https://github.com/grstoltz/pissedtrest/blob/master/public/images/pissedtrest.gif)
+![GIF](https://github.com/grstoltz/pissedtrest/blob/master/public/images/Sample/pissedtrest.gif)
 
 ---
 # Design Team

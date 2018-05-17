@@ -52,6 +52,15 @@ app.get("/", function(req, res){
   })
 })
 
+    // Here we add an "include" property to our options in our findAll query
+    // We set the value to an array of the models we want to include in a left outer join
+    // In this case, just db.Post
+    db.Author.findAll({
+      include: [db.Post]
+    }).then(function(dbAuthor) {
+      res.json(dbAuthor);
+    });
+
 app.get("/api/users", function(req, res){
   db.User.findAll({}).then(function(result){
     res.json(result)
@@ -218,14 +227,14 @@ app.get('/auth/google/callback',
   function(req, res) {
 
     db.User.findOrCreate({
-      where: {  
+      where: {
         user_id: req.user.id
         }
     }).then(function(result){
       console.log(result)
       res.redirect('/');
     })
-   
+
   });
 
 app.get('/logout', function(req, res){
@@ -234,7 +243,7 @@ app.get('/logout', function(req, res){
 });
 
 app.get('/api/user_data', function(req, res) {
-  
+
   res.send(req.user)
 });
 
